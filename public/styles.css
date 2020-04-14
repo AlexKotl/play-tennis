@@ -1,0 +1,257 @@
+h1, h2 {
+  font-size: 24px; }
+
+h3 {
+  font-size: 20px; }
+
+.btn {
+  font-size: 13px;
+  border-radius: 3px;
+  border: 0;
+  border-bottom: 2px solid #42638c;
+  color: white;
+  padding: 6px 28px;
+  cursor: pointer;
+  outline: none; }
+  .btn i {
+    margin-right: 3px; }
+
+.btn-sm {
+  padding: 4px 10px;
+  font-size: 12px; }
+
+.btn-primary {
+  background-color: #4d97d5; }
+  .btn-primary:hover {
+    background: #68ace6;
+    border-color: #678ab6; }
+
+.btn-outline-primary {
+  border-color: #4080a8;
+  color: #4080a8; }
+  .btn-outline-primary:hover {
+    background-color: #4080a8;
+    border-color: #367399; }
+
+.btn-light {
+  background-color: white;
+  border-color: lightgray;
+  color: #333; }
+
+.btn-success {
+  border-color: #349149; }
+
+a {
+  color: #4080a8; }
+
+.card-body {
+  padding: 15px;
+  font-size: 13px; }
+  .card-body .card-title {
+    font-size: 15px;
+    margin: 7px 0; }
+
+.modal-body {
+  font-size: 13px; }
+
+body {
+  background-color: #F8F8F8; }
+
+i.fa {
+  margin-right: 3px; }
+
+h1 small {
+  color: #666;
+  font-size: 14px; }
+
+.main-container {
+  max-width: 1000px;
+  margin: auto;
+  padding: 15px;
+  padding-bottom: 200px; }
+
+.background-image {
+  background-size: cover;
+  background-position: center;
+  display: block;
+  padding-bottom: 70%; }
+  .background-image.square {
+    padding-bottom: 100%; }
+  .background-image.circle {
+    border-radius: 50%;
+    padding-bottom: 100%; }
+
+.top-menu {
+  box-shadow: 0px 0px 2px #333;
+  background-color: #333333;
+  color: #eee; }
+  .top-menu .top-menu-container {
+    max-width: 1000px;
+    margin: auto;
+    padding: 12px 15px; }
+  .top-menu .title a {
+    font-size: 20px;
+    color: #ddd;
+    font-weight: bold;
+    text-decoration: none; }
+    .top-menu .title a .highlight {
+      color: #D3EF2F; }
+  .top-menu .title img {
+    width: 48px;
+    height: 48px;
+    margin-right: 7px; }
+  .top-menu .main-chapters {
+    margin-top: 8px; }
+  .top-menu .user-block {
+    margin-top: 4px; }
+  .top-menu .menu a {
+    color: #81bbe0; }
+  .top-menu .menu a.menu-item {
+    margin: 4px 10px;
+    font-size: 16px;
+    color: white; }
+  .top-menu .menu .icon {
+    width: 24px;
+    margin: 0 8px;
+    opacity: 0.7; }
+  .top-menu .menu .profile-actions {
+    font-size: 12px;
+    margin-left: 20px; }
+    .top-menu .menu .profile-actions a {
+      color: #D3EF2F; }
+  .top-menu .menu .btn {
+    padding: 5px 12px;
+    font-size: 14px;
+    color: white;
+    margin: 2px 0; }
+    .top-menu .menu .btn i {
+      margin-right: 5px; }
+  .top-menu .menu .btn-outline-primary {
+    color: white;
+    border-color: #D3EF2F;
+    background-color: #4d4d4d; }
+    .top-menu .menu .btn-outline-primary:hover {
+      background-color: rgba(255, 255, 255, 0.36); }
+  .top-menu .menu .btn-primary {
+    background-color: #d3ef2f77;
+    border-color: #D3EF2F; }
+
+.breadcrumbs-block {
+  background-color: #504d4d; }
+  .breadcrumbs-block .breadcrumbs {
+    max-width: 1000px;
+    padding: 4px 15px 8px 15px;
+    margin: auto; }
+    .breadcrumbs-block .breadcrumbs a {
+      color: #eee;
+      font-size: 12px;
+      text-decoration: none; }
+      .breadcrumbs-block .breadcrumbs a:hover {
+        color: white; }
+      .breadcrumbs-block .breadcrumbs a:before {
+        content: "/";
+        margin: 0 14px;
+        color: #777;
+        text-decoration: none; }
+      .breadcrumbs-block .breadcrumbs a:first-child:before {
+        content: "";
+        margin: 0; }
+
+.requests-list .request {
+  border-top: 1px solid #ddd; }
+  .requests-list .request .header {
+    font-size: 14px; }
+
+.players-filters .rank select {
+  width: 48%; }
+
+.players-filters input {
+  width: 100%; }
+
+.players-filters button {
+  width: 100%;
+  padding: 8px 10px; }
+
+.players-filters selec, .players-filters button, .players-filters input {
+  margin-top: 2px;
+  margin-bottom: 2px; }
+
+.players-list .player {
+  text-decoration: none;
+  color: #333;
+  margin: 10px 0; }
+  .players-list .player .background-image {
+    padding-bottom: 90%; }
+
+.courts-list .court {
+  text-decoration: none;
+  color: #333; }
+
+.courts-list td {
+  font-size: 14px; }
+  .courts-list td:first-child {
+    font-weight: bold; }
+
+.messages-list {
+  margin-top: 30px; }
+  .messages-list .message {
+    margin-bottom: 15px; }
+  .messages-list .text {
+    padding: 7px 10px;
+    border-radius: 4px;
+    background-color: #4080a8;
+    color: white;
+    display: inline-block; }
+  .messages-list .author {
+    font-size: 11px;
+    font-weight: bold; }
+  .messages-list .date {
+    font-size: 10px;
+    color: darkgray; }
+  .messages-list .message.self {
+    text-align: right; }
+    .messages-list .message.self .text {
+      background-color: #ededed;
+      color: black; }
+    .messages-list .message.self .author {
+      display: none;
+      text-align: right; }
+    .messages-list .message.self .date {
+      text-align: right; }
+
+.friends-list .row {
+  border-bottom: 1px solid #eee;
+  font-size: 13px;
+  padding: 4px 0;
+  margin: 4px 0; }
+  .friends-list .row a {
+    color: #333; }
+
+.top-players .player {
+  font-size: 11px;
+  color: #333;
+  text-align: center;
+  margin: 10px 0; }
+  .top-players .player .title {
+    font-size: 13px; }
+
+.site-footer {
+  background-color: #333333;
+  box-shadow: 0px -1px 2px lightgray;
+  color: #aaa;
+  height: 100px;
+  font-size: 12px;
+  padding: 30px 20px 200px 20px; }
+  .site-footer a {
+    color: white; }
+
+@media screen and (max-width: 576px) {
+  .top-menu .menu .btn {
+    padding: 5px;
+    font-size: 12px; }
+    .top-menu .menu .btn i {
+      display: none; }
+  .top-menu .menu .menu-item {
+    margin: 4px 8px; }
+  .top-menu .menu .icon {
+    margin: 0 2px; } }
