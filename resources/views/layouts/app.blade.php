@@ -67,15 +67,15 @@
             </div>
 
             <div class="menu main-chapters float-right">
-                <a href="{{ route('index') }}" class="menu-item">
+                <a href="{{ route('players') }}" class="menu-item">
                     <img src="/images/icons/racket-white.png" class="icon" alt="">
                     Игроки
                 </a>
-                <a href="{{ route('index') }}" class="menu-item">
+                <a href="{{ route('courts') }}" class="menu-item">
                     <img src="/images/icons/court-white.png" class="icon" alt="">
                     Корты
                 </a>
-                <a href="{{ route('index') }}" class="menu-item" style="margin-right: 30px">
+                <a href="{{ route('friends') }}" class="menu-item" style="margin-right: 30px">
                     <img src="/images/icons/handshake-white.png" class="icon" alt="">
                     Друзья
                     <span class="badge badge-danger">{{ 'menu_friends_count' }}</span>

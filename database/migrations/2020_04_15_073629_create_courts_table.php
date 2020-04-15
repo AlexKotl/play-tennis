@@ -19,8 +19,8 @@ class CreateCourtsTable extends Migration
             $table->string('address');
             $table->string('phone');
             $table->string('url');
-            $table->float('map_lat');
-            $table->float('map_lng');
+            $table->float('map_lat', 13, 10);
+            $table->float('map_lng', 13, 10);
             $table->integer('flag');
             $table->timestamps();
         });
