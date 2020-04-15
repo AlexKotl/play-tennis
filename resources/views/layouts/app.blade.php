@@ -98,6 +98,7 @@
     </div>
 
     <div class="main-container site-width">
+        @include('inc.messages')
         @yield('content')
     </div>
 
