@@ -10,13 +10,18 @@ class PlayerController extends Controller
     public function index()
     {
         return view('player.index', [
-            'players' => User::orderBy('id', 'desc')->get()
+            'players' => User::orderBy('id', 'desc')->get(),
         ]);
     }
 
     public function show($id)
     {
-
+        $user = User::find($id);
+        $user->nickname = explode('@', $user->email)[0];
+        return view('player.show', [
+            'player' => $user,
+            'messages' => [],
+        ]);
     }
 
     public function message($id)
