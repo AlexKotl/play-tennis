@@ -12,3 +12,5 @@ npm-debug.log
 yarn-error.log
 /composer.lock
 /package-lock.json
+/public/js/app.js
+/public/css/app.css
