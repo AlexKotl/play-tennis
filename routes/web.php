@@ -27,9 +27,9 @@ Route::post('/profile', 'ProfileController@store')->name('profile');
 Route::get('/courts', 'CourtController@index')->name('courts');
 Route::get('/courts/{id}', 'CourtController@show')->name('court');
 
-Route::get('/players', 'CourtController@index')->name('players');
-Route::get('/players/{id}', 'CourtController@show')->name('player');
-Route::get('/players/{id}/message', 'CourtController@show')->middleware('auth')->name('message_player');
+Route::get('/players', 'PlayerController@index')->name('players');
+Route::get('/players/{id}', 'PlayerController@show')->name('player');
+Route::get('/players/{id}/message', 'PlayerController@message')->middleware('auth')->name('message_player');
 
 Route::get('/friends', 'CourtController@index')->name('friends');
 
