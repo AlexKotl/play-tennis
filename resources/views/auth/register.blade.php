@@ -99,13 +99,13 @@
                         }
                     });
                     var IconSelected = new MarkerIcon({iconUrl: '/images/icons/map-marker-ball.png'});
-                    var Icon = new MarkerIcon({iconUrl: 'images/icons/map-marker.png'});
+                    var Icon = new MarkerIcon({iconUrl: '/images/icons/map-marker.png'});
                     var markers = [];
 
                     @foreach ($courts as $court)
                         @if ($court->map_lat != 0 && $court->map_lng != 0)
                             var marker = L.marker([{{ $court->map_lat }}, {{ $court->map_lng }}], {
-                                icon: @if (in_array($court->id, $courts_checked)) IconSelected @else Icon @endif
+                                icon: @if (isset($courts_checked) && in_array($court->id, $courts_checked)) IconSelected @else Icon @endif
                             }).addTo(map);
                             marker.bindPopup("<b>{{ $court->name }}</b>");
                             marker.isSelected = false;
@@ -136,7 +136,7 @@
                         <div class="form-check col-12 col-sm-4">
                             <label class="form-check-label">
                                 <input class="form-check-input" name="courts[]" type="checkbox"
-                                    value="{{ $court->id }}" @if (in_array($court->id, $courts_checked)) checked @endif />
+                                    value="{{ $court->id }}" @if (isset($courts_checked) && in_array($court->id, $courts_checked)) checked @endif />
                                 {{ $court->name }}
                             </label>
                         </div>

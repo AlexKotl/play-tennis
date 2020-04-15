@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Auth;
 use App\Http\Controllers\Controller;
 use App\Providers\RouteServiceProvider;
 use App\User;
+use App\Court;
 use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
@@ -65,7 +66,7 @@ class RegisterController extends \App\Http\Controllers\ProfileController
      */
     protected function create(array $data)
     {
-        return User::create([
+        $user = User::create([
             'name' => $data['name'],
             'email' => $data['email'],
             'password' => Hash::make($data['password']),
@@ -74,6 +75,11 @@ class RegisterController extends \App\Http\Controllers\ProfileController
             'about' => $data['about'],
             'player_since' => $data['player_since'],
         ]);
+
+        $courts = Court::find($data['courts']);
+        $user->courts()->sync($courts);
+
+        return $user;
     }
 
     public function showRegistrationForm()
