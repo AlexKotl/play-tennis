@@ -69,6 +69,10 @@ class RegisterController extends \App\Http\Controllers\ProfileController
             'name' => $data['name'],
             'email' => $data['email'],
             'password' => Hash::make($data['password']),
+            'phone' => $data['phone'],
+            'rank' => $data['rank'],
+            'about' => $data['about'],
+            'player_since' => $data['player_since'],
         ]);
     }
 

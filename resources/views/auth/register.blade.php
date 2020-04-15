@@ -231,7 +231,7 @@
 
 
 
-        <input type="submit" value="Сохранить" class="btn btn-primary">
+        <input type="submit" value="@empty($user) Регистрация @else Сохранить @endempty" class="btn btn-primary">
     </form>
 
     @include('inc.ranks_modal')
