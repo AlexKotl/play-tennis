@@ -59,10 +59,15 @@
                             {{ Auth::user()->name }}
                         </a>
                     </span>
-                    <a href="{{ route('logout') }}" class="btn btn-outline-primary" style="margin-left: 10px">
+                    <a href="{{ route('logout') }}"
+                        class="btn btn-outline-primary" style="margin-left: 10px"
+                        onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
                         <i class="fa fa-sign-out"></i>
                         Выйти
                     </a>
+                    <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                        @csrf
+                    </form>
                 @endguest
             </div>
 
