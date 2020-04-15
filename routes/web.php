@@ -23,13 +23,14 @@ Route::get('/', function () {
 })->name('index');
 
 Auth::routes();
+Route::get('/profile', 'ProfileController@index')->name('profile');
 
 Route::get('/courts', 'CourtController@index')->name('courts');
 Route::get('/courts/{id}', 'CourtController@show')->name('court');
 
 Route::get('/players', 'CourtController@index')->name('players');
 Route::get('/players/{id}', 'CourtController@show')->name('player');
-Route::get('/players/{id}/message', 'CourtController@show')->name('message_player');
+Route::get('/players/{id}/message', 'CourtController@show')->middleware('auth')->name('message_player');
 
 Route::get('/friends', 'CourtController@index')->name('friends');
 

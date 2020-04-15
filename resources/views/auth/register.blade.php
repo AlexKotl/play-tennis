@@ -208,7 +208,7 @@
             <div class="form-group row">
                 <label class="col-md-3 col-form-label" for="id_password1">Пароль</label>
                 <div class="col-md-9">
-                    <input type="password" name="password1" class="form-control" placeholder="Пароль" required="" id="id_password1">
+                    <input type="password" name="password" class="form-control" placeholder="Пароль" required="" autocomplete="new-password">
                     <small class="form-text text-muted">
                         <ul>
                             <li>Должен содержать как минимум 8 символов.</li>
@@ -221,7 +221,7 @@
             <div class="form-group row">
                 <label class="col-md-3 col-form-label" for="id_password2">Пароль еще раз</label>
                 <div class="col-md-9">
-                    <input type="password" name="password2" class="form-control" placeholder="Пароль" required="" id="id_password2">
+                    <input type="password" name="password_confirmation" class="form-control" placeholder="Пароль" required="" autocomplete="new-password">
                     <small class="form-text text-muted">Введите такой же пароль, как вы ввели выше.</small>
                 </div>
             </div>

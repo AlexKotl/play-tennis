@@ -54,7 +54,7 @@
                 @else
                     <span class="profile-actions">
                         Привет,
-                        <a href='{{ route('index') }}'>
+                        <a href='{{ route('profile') }}'>
                             <i class="fa fa-user"></i>
                             {{ Auth::user()->name }}
                         </a>
