@@ -37,20 +37,27 @@ class ProfileController extends Controller
         return $ranks;
     }
 
-
-    /**
-     * Show the application dashboard.
-     *
-     * @return \Illuminate\Contracts\Support\Renderable
-     */
     public function index()
     {
-        $user = \App\User::find(\Auth::User()->id);
+        $user = \Auth::User();
         return view('auth.register', [
             'user' => $user,
             'courts' => DB::table('courts')->where('flag', 1)->get(),
             'years' => $this->getYears(),
             'ranks' => $this->getRanks(),
         ]);
+    }
+
+    public function store(Request $request)
+    {
+        $user = \Auth::User();
+        $user->name = $request->input('name');
+        $user->phone = $request->input('phone');
+        $user->rank = $request->input('rank');
+        $user->player_since = $request->input('player_since');
+        $user->about = $request->input('about');
+        
+        $user->save();
+        return redirect('profile')->with('success', 'Профиль сохранен.');
     }
 }

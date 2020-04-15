@@ -24,6 +24,7 @@ Route::get('/', function () {
 
 Auth::routes();
 Route::get('/profile', 'ProfileController@index')->name('profile');
+Route::post('/profile', 'ProfileController@store')->name('profile');
 
 Route::get('/courts', 'CourtController@index')->name('courts');
 Route::get('/courts/{id}', 'CourtController@show')->name('court');

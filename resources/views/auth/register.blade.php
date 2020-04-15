@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('site_title')
-    @if (true)
+    @empty($user)
         Регистрация профиля теннисиста
     @else
         Профиль
@@ -9,7 +9,7 @@
 @endsection
 
 @section('breadcrumbs')
-    @if (true)
+    @empty($user)
         <a href="">Регистрация</a>
     @else
         <a href="">Профиль игрока</a>
@@ -34,7 +34,7 @@
         })
     </script>
 
-    @if (true)
+    @empty($user)
         <h1>Регистрация</h1>
     @else
         <h1>Ваш профиль</h1>
@@ -46,7 +46,7 @@
         <div class="form-group row">
             <label class="col-md-3 col-form-label">Имя</label>
             <div class="col-md-9">
-                {{Form::text('name', '', ['class' => 'form-control', 'autofocus' => 'autofocus'])}}
+                {{Form::text('name', isset($user) ? $user->name : '', ['class' => 'form-control', 'autofocus' => 'autofocus'])}}
                 <small class="form-text text-muted">Ваше полное имя, которое будет отображаться на сайте</small>
             </div>
         </div>
@@ -54,12 +54,12 @@
         <div class="form-group row">
             <label class="col-md-3 col-form-label">Телефон</label>
             <div class="col-md-9">
-                {{Form::text('phone', '', ['class' => 'form-control phone_mask'])}}
+                {{Form::text('phone', isset($user) ? $user->phone : '', ['class' => 'form-control phone_mask'])}}
                 <small class="form-text text-muted">Телефон будет отображаться только для ваших друзей</small>
             </div>
         </div>
 
-        @if(true)
+        @empty($user)
             <div class="form-group row">
                 <label class="col-md-3 col-form-label">Email</label>
                 <div class="col-md-9">
@@ -147,7 +147,7 @@
         <div class="form-group row">
             <label class="col-md-3 col-form-label">Уровень игры</label>
             <div class="col-md-9">
-                {{Form::select('rank', $ranks, '', ['class' => 'form-control'])}}
+                {{Form::select('rank', $ranks, isset($user) ? $user->rank : '', ['class' => 'form-control'])}}
                 <small class="form-text text-muted"><a href="#" data-toggle="modal" data-target="#rankModal">Как определить свой уровень?</a></small>
             </div>
         </div>
@@ -155,7 +155,7 @@
         <div class="form-group row">
             <label class="col-md-3 col-form-label">Игровой опыт</label>
             <div class="col-md-9">
-                {{Form::select('player_since', $years, '', ['class' => 'form-control'])}}
+                {{Form::select('player_since', $years, isset($user) ? $user->player_since : '', ['class' => 'form-control'])}}
             </div>
         </div>
 
@@ -175,7 +175,9 @@
         <div class="form-group row">
             <label class="col-md-3 col-form-label">О себе</label>
             <div class="col-md-9">
-                <textarea name="about" cols="10" rows="4" class="form-control" placeholder="О себе" title="Расскажите о себе, ваш опыт игры, увлечения и т.д." id="id_about"></textarea>
+                <textarea name="about" cols="10" rows="4" class="form-control" placeholder="О себе"
+                    title="Расскажите о себе, ваш опыт игры, увлечения и т.д." id="id_about"
+                    >@isset($user){{$user->about}}@endisset</textarea>
                 <small class="form-text text-muted">Расскажите о себе, ваш опыт игры, увлечения и т.д.</small>
             </div>
         </div>
@@ -204,7 +206,7 @@
         </div>
         --}}
 
-        @if (true)
+        @empty($user)
             <div class="form-group row">
                 <label class="col-md-3 col-form-label" for="id_password1">Пароль</label>
                 <div class="col-md-9">
