@@ -18,9 +18,7 @@ use Illuminate\Support\Facades\Route;
 //     path('requests/<id>/edit', views.RequestsEditView.as_view(), name='edit_request'),
 //     path('requests/<id>/delete', views.RequestsDeleteView.as_view(), name='delete_request'),
 
-Route::get('/', function () {
-    return view('layouts.app');
-})->name('index');
+Route::get('/', 'HomepageController@index')->name('index');
 
 Auth::routes();
 Route::get('/profile', 'ProfileController@index')->name('profile');
