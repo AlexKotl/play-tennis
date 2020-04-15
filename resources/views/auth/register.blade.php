@@ -105,7 +105,7 @@
                     @foreach ($courts as $court)
                         @if ($court->map_lat != 0 && $court->map_lng != 0)
                             var marker = L.marker([{{ $court->map_lat }}, {{ $court->map_lng }}], {
-                                icon: @if ($court->id == 0) IconSelected @else Icon @endif
+                                icon: @if (in_array($court->id, $courts_checked)) IconSelected @else Icon @endif
                             }).addTo(map);
                             marker.bindPopup("<b>{{ $court->name }}</b>");
                             marker.isSelected = false;
@@ -135,7 +135,8 @@
                     @foreach ($courts as $court)
                         <div class="form-check col-12 col-sm-4">
                             <label class="form-check-label">
-                                <input class="form-check-input" name="courts" type="checkbox" value="{{ $court->id }}" @if ($court->id == 0) checked @endif />
+                                <input class="form-check-input" name="courts[]" type="checkbox"
+                                    value="{{ $court->id }}" @if (in_array($court->id, $courts_checked)) checked @endif />
                                 {{ $court->name }}
                             </label>
                         </div>
@@ -158,19 +159,6 @@
                 {{Form::select('player_since', $years, isset($user) ? $user->player_since : '', ['class' => 'form-control'])}}
             </div>
         </div>
-
-        {{--
-        <div class="form-group row">
-            <label class="col-md-3 col-form-label" for="id_is_looking">&nbsp;</label>
-            <div class="col-md-9">
-                <div class="form-check">
-                    <input type="checkbox" name="is_looking" class="form-check-input" id="id_is_looking" {% if form.is_looking.value == 1 %} checked {% endif %}>
-                    <label class="form-check-label" for="id_is_looking" title="Отметьте галочку, если вы ищете партнера.">Ищу партнера</label>
-                    <small class="form-text text-muted">Отметьте галочку, если вы ищете партнера.</small>
-                </div>
-            </div>
-        </div>
-        --}}
 
         <div class="form-group row">
             <label class="col-md-3 col-form-label">О себе</label>

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use App\Court;
 
 class ProfileController extends Controller
 {
@@ -39,10 +40,12 @@ class ProfileController extends Controller
 
     public function index()
     {
+
         $user = \Auth::User();
         return view('auth.register', [
             'user' => $user,
-            'courts' => DB::table('courts')->where('flag', 1)->get(),
+            'courts_checked' => $user->courts()->get()->pluck('id')->toArray(),
+            'courts' => Court::where('flag', 1)->get(),
             'years' => $this->getYears(),
             'ranks' => $this->getRanks(),
         ]);
@@ -56,8 +59,11 @@ class ProfileController extends Controller
         $user->rank = $request->input('rank');
         $user->player_since = $request->input('player_since');
         $user->about = $request->input('about');
-        
         $user->save();
+
+        $courts = Court::find($request->input('courts'));
+        $user->courts()->sync($courts);
+
         return redirect('profile')->with('success', 'Профиль сохранен.');
     }
 }
