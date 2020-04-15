@@ -1,21 +1,20 @@
 @extends('layouts.app')
 
-{{-- {% block site_title %}
-
-    {% if request.path == '/register/' %}
+@section('site_title')
+    @if (true)
         Регистрация профиля теннисиста
-    {% else %}
+    @else
         Профиль
-    {% endif %}
-{% endblock %}
+    @endif
+@endsection
 
-{% block breadcrumbs %}
-    {% if request.path == '/register/' %}
+@section('breadcrumbs')
+    @if (true)
         <a href="">Регистрация</a>
-    {% else %}
+    @else
         <a href="">Профиль игрока</a>
-    {% endif %}
-{% endblock %} --}}
+    @endif
+@endsection
 
 @section('content')
     <script>
@@ -35,34 +34,11 @@
         })
     </script>
 
-    {{-- {% if request.path == '/register/' %}
+    @if (true)
         <h1>Регистрация</h1>
-    {% else %}
+    @else
         <h1>Ваш профиль</h1>
-    {% endif %} --}}
-
-    {{-- {% if form.errors %}
-        {% for field in form %}
-            {% for error in field.errors %}
-                <div class="alert alert-danger">
-                    <strong>{{ error|escape }}</strong>
-                </div>
-            {% endfor %}
-        {% endfor %}
-        {% for error in form.non_field_errors %}
-            <div class="alert alert-danger">
-                Not field error: <strong>{{ error|escape }}</strong>
-            </div>
-        {% endfor %}
-    {% endif %}
-
-    {% if messages %}
-        <div class="alert alert-success">
-        {% for message in messages %}
-            {{ message }}
-        {% endfor %}
-        </div>
-    {% endif %} --}}
+    @endif
 
     <form method="post" enctype="multipart/form-data">
         @csrf
@@ -70,22 +46,15 @@
         <div class="form-group row">
             <label class="col-md-3 col-form-label">Имя</label>
             <div class="col-md-9">
-                <input id="name" type="text" class="form-control" name="name" value="{{ old('name') }}" autocomplete="name" autofocus>
+                {{Form::text('name', '', ['class' => 'form-control', 'autofocus' => 'autofocus'])}}
                 <small class="form-text text-muted">Ваше полное имя, которое будет отображаться на сайте</small>
-            </div>
-        </div>
-
-        <div class="form-group row">
-            <label class="col-md-3 col-form-label">Пол</label>
-            <div class="col-md-9">
-                {{Form::checkbox('sex')}}
             </div>
         </div>
 
         <div class="form-group row">
             <label class="col-md-3 col-form-label">Телефон</label>
             <div class="col-md-9">
-                <input type="text" name="phone" value="" maxlength="180" class="form-control phone_mask">
+                {{Form::text('phone', '', ['class' => 'form-control phone_mask'])}}
                 <small class="form-text text-muted">Телефон будет отображаться только для ваших друзей</small>
             </div>
         </div>
@@ -94,7 +63,7 @@
             <div class="form-group row">
                 <label class="col-md-3 col-form-label">Email</label>
                 <div class="col-md-9">
-                    {{Form::text('email')}}
+                    {{Form::text('email', '', ['class' => 'form-control'])}}
                 </div>
             </div>
         @endif
@@ -178,7 +147,7 @@
         <div class="form-group row">
             <label class="col-md-3 col-form-label">Уровень игры</label>
             <div class="col-md-9">
-                RANK
+                {{Form::select('rank', $ranks, '', ['class' => 'form-control'])}}
                 <small class="form-text text-muted"><a href="#" data-toggle="modal" data-target="#rankModal">Как определить свой уровень?</a></small>
             </div>
         </div>
@@ -186,7 +155,7 @@
         <div class="form-group row">
             <label class="col-md-3 col-form-label">Игровой опыт</label>
             <div class="col-md-9">
-                PLAYER SINCE
+                {{Form::select('player_since', $years, '', ['class' => 'form-control'])}}
             </div>
         </div>
 

@@ -74,8 +74,19 @@ class RegisterController extends Controller
 
     public function showRegistrationForm()
     {
+        $courts = DB::table('courts')->where('flag', 1)->get();
+        $years = ['' => '-'];
+        foreach (range(date('Y'), date('Y') - 20, -1) as $year) {
+            $years[$year] = "с {$year} года";
+        }
+        $ranks = ['' => '-'];
+        foreach (range(10, 75, 5) as $rank) {
+            $ranks[''.$rank/10] = number_format($rank/10, 1, '.', ',');
+        }
         return view('auth.register')->with([
-            'courts' => DB::table('courts')->where('flag', 1)->get(),
+            'courts' => $courts,
+            'years' => $years,
+            'ranks' => $ranks,
         ]);
     }
 
