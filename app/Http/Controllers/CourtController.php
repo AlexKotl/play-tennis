@@ -16,6 +16,8 @@ class CourtController extends Controller
     public function show($id)
     {
         $court = DB::table('courts')->find($id);
+        $court->players_count = 0;
+        $court->players = [];
         return view('court.show', ['court' => $court]);
     }
 }
