@@ -70,41 +70,34 @@
         <div class="form-group row">
             <label class="col-md-3 col-form-label">Имя</label>
             <div class="col-md-9">
-                <input id="name" type="text" class="form-control @error('name') is-invalid @enderror" name="name" value="{{ old('name') }}" required autocomplete="name" autofocus>
+                <input id="name" type="text" class="form-control" name="name" value="{{ old('name') }}" autocomplete="name" autofocus>
                 <small class="form-text text-muted">Ваше полное имя, которое будет отображаться на сайте</small>
-                @error('name')
-                    <span class="invalid-feedback" role="alert">
-                        <strong>{{ $message }}</strong>
-                    </span>
-                @enderror
             </div>
         </div>
 
         <div class="form-group row">
             <label class="col-md-3 col-form-label">Пол</label>
             <div class="col-md-9">
-                <input type="checkbox" name="" value="">
+                {{Form::checkbox('sex')}}
             </div>
         </div>
 
-        {{-- <div class="form-group row">
+        <div class="form-group row">
             <label class="col-md-3 col-form-label">Телефон</label>
             <div class="col-md-9">
-                {{ form.phone.errors }}
-                <input type="text" name="phone" value="{% if form.phone.value != None %}{{ form.phone.value }}{% endif %}" maxlength="180" class="form-control phone_mask">
+                <input type="text" name="phone" value="" maxlength="180" class="form-control phone_mask">
                 <small class="form-text text-muted">Телефон будет отображаться только для ваших друзей</small>
             </div>
         </div>
 
-        {% if request.path == '/register/' %}
-        <div class="form-group row">
-            <label class="col-md-3 col-form-label">Email</label>
-            <div class="col-md-9">
-                {{ form.email.errors }}
-                {{ form.email }}
+        @if(true)
+            <div class="form-group row">
+                <label class="col-md-3 col-form-label">Email</label>
+                <div class="col-md-9">
+                    {{Form::text('email')}}
+                </div>
             </div>
-        </div>
-        {% endif %}
+        @endif
 
         <div class="form-group row">
             <label class="col-md-3 col-form-label">Корты</label>
@@ -136,28 +129,28 @@
                             popupAnchor: [0, -41]
                         }
                     });
-                    var IconSelected = new MarkerIcon({iconUrl: '{% static 'images/icons/map-marker-ball.png' %}'});
-                    var Icon = new MarkerIcon({iconUrl: '{% static 'images/icons/map-marker.png' %}'});
+                    var IconSelected = new MarkerIcon({iconUrl: '/images/icons/map-marker-ball.png'});
+                    var Icon = new MarkerIcon({iconUrl: 'images/icons/map-marker.png'});
                     var markers = [];
 
-                    {% for court in form.fields.courts.queryset %}
-                        {% if court.map_lat != 0 and court.map_lng != 0 %}
-                            var marker = L.marker([{{ court.map_lat }}, {{ court.map_lng }}], {
-                                icon: {% if court.id in form.courts.value %} IconSelected {% else %} Icon {% endif %}
+                    @foreach ($courts as $court)
+                        @if ($court->map_lat != 0 && $court->map_lng != 0)
+                            var marker = L.marker([{{ $court->map_lat }}, {{ $court->map_lng }}], {
+                                icon: @if ($court->id == 0) IconSelected @else Icon @endif
                             }).addTo(map);
-                            marker.bindPopup("<b>{{ court.name }}</b>");
+                            marker.bindPopup("<b>{{ $court->name }}</b>");
                             marker.isSelected = false;
-                            marker.courtId = {{ court.id }};
+                            marker.courtId = {{ $court->id }};
                             marker.on('click', function(element) {
                                 var is_selected = element.target.isSelected;
                                 element.target.isSelected = !is_selected;
                                 element.target.setIcon(is_selected ? Icon : IconSelected);
-                                $('input[name=courts][value={{ court.id }}]').prop('checked', !is_selected);
+                                $('input[name=courts][value={{ $court->id }}]').prop('checked', !is_selected);
                             });
 
-                            markers['{{ court.id }}'] = marker;
-                        {% endif %}
-                    {% endfor %}
+                            markers['{{ $court->id }}'] = marker;
+                        @endif
+                    @endforeach
 
                     $(document).ready(function() {
                         $('input[name=courts]').on('change', function(element) {
@@ -170,15 +163,14 @@
                 </script>
 
                 <div class="row" style="padding-left:15px; padding-top: 15px">
-                    {{ form.courts.errors }}
-                    {% for court in form.fields.courts.queryset %}
+                    @foreach ($courts as $court)
                         <div class="form-check col-12 col-sm-4">
                             <label class="form-check-label">
-                                <input class="form-check-input" name="courts" type="checkbox" value="{{ court.id }}" {% if court.id in form.courts.value %} checked {% endif %} />
-                                {{ court.name }}
+                                <input class="form-check-input" name="courts" type="checkbox" value="{{ $court->id }}" @if ($court->id == 0) checked @endif />
+                                {{ $court->name }}
                             </label>
                         </div>
-                    {% endfor %}
+                    @endforeach
                 </div>
             </div>
         </div>
@@ -186,8 +178,7 @@
         <div class="form-group row">
             <label class="col-md-3 col-form-label">Уровень игры</label>
             <div class="col-md-9">
-                {{ form.rank.errors }}
-                {{ form.rank }}
+                RANK
                 <small class="form-text text-muted"><a href="#" data-toggle="modal" data-target="#rankModal">Как определить свой уровень?</a></small>
             </div>
         </div>
@@ -195,11 +186,11 @@
         <div class="form-group row">
             <label class="col-md-3 col-form-label">Игровой опыт</label>
             <div class="col-md-9">
-                {{ form.player_since.errors }}
-                {{ form.player_since }}
+                PLAYER SINCE
             </div>
         </div>
 
+        {{--
         <div class="form-group row">
             <label class="col-md-3 col-form-label" for="id_is_looking">&nbsp;</label>
             <div class="col-md-9">
@@ -210,16 +201,17 @@
                 </div>
             </div>
         </div>
+        --}}
 
         <div class="form-group row">
             <label class="col-md-3 col-form-label">О себе</label>
             <div class="col-md-9">
-                {{ form.about.errors }}
-                <textarea name="about" cols="10" rows="4" class="form-control" placeholder="О себе" title="Расскажите о себе, ваш опыт игры, увлечения и т.д." id="id_about">{% if form.about.value != None %}{{ form.about.value }}{% endif %}</textarea>
+                <textarea name="about" cols="10" rows="4" class="form-control" placeholder="О себе" title="Расскажите о себе, ваш опыт игры, увлечения и т.д." id="id_about"></textarea>
                 <small class="form-text text-muted">Расскажите о себе, ваш опыт игры, увлечения и т.д.</small>
             </div>
         </div>
 
+        {{--
         <div class="form-group row">
             <label class="col-md-3 col-form-label">Фото</label>
             <div class="col-md-9">
@@ -241,29 +233,30 @@
                 <input type="file" name="image" accept="image/*">
             </div>
         </div>
+        --}}
 
-        {% if request.path == '/register/' %}
-        <div class="form-group row">
-            <label class="col-md-3 col-form-label" for="id_password1">Пароль</label>
-            <div class="col-md-9">
-                <input type="password" name="password1" class="form-control" placeholder="Пароль" required="" id="id_password1">
-                <small class="form-text text-muted">
-                    <ul>
-                        <li>Должен содержать как минимум 8 символов.</li>
-                        <li>Должен содержать буквы и числа.</li>
-                    </ul>
-                </small>
+        @if (true)
+            <div class="form-group row">
+                <label class="col-md-3 col-form-label" for="id_password1">Пароль</label>
+                <div class="col-md-9">
+                    <input type="password" name="password1" class="form-control" placeholder="Пароль" required="" id="id_password1">
+                    <small class="form-text text-muted">
+                        <ul>
+                            <li>Должен содержать как минимум 8 символов.</li>
+                            <li>Должен содержать буквы и числа.</li>
+                        </ul>
+                    </small>
+                </div>
             </div>
-        </div>
 
-        <div class="form-group row">
-            <label class="col-md-3 col-form-label" for="id_password2">Пароль еще раз</label>
-            <div class="col-md-9">
-                <input type="password" name="password2" class="form-control" placeholder="Пароль" required="" id="id_password2">
-                <small class="form-text text-muted">Введите такой же пароль, как вы ввели выше.</small>
+            <div class="form-group row">
+                <label class="col-md-3 col-form-label" for="id_password2">Пароль еще раз</label>
+                <div class="col-md-9">
+                    <input type="password" name="password2" class="form-control" placeholder="Пароль" required="" id="id_password2">
+                    <small class="form-text text-muted">Введите такой же пароль, как вы ввели выше.</small>
+                </div>
             </div>
-        </div>
-        {% endif %} --}}
+        @endif
 
 
 

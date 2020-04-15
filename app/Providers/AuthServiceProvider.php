@@ -7,6 +7,10 @@ use Illuminate\Support\Facades\Gate;
 
 class AuthServiceProvider extends ServiceProvider
 {
+
+    public const HOME = '/';
+
+
     /**
      * The policy mappings for the application.
      *
