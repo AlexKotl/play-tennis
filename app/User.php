@@ -41,4 +41,14 @@ class User extends Authenticatable
     {
         return $this->belongsToMany('App\Court');
     }
+
+    public function avatar()
+    {
+        return $this->avatar_image ? asset('storage/avatars/' . $this->avatar_image) : '/images/blank-player2.jpg';
+    }
+
+    public function nickname()
+    {
+        return explode('@', $this->email)[0];
+    }
 }

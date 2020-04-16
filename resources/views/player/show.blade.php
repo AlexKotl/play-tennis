@@ -32,12 +32,12 @@
         <div class="col-xs-12 col-md-7 pb-4">
             <div class="row">
                 <div class="col-md-3">
-                    @if (false)
-                        <a href="/media/{{ player.image }}" class="image-gallery">
-                            <div class="background-image circle" style="background-image: url('/media/{{ player.image }}')"></div>
+                    @if ($player->avatar_image)
+                        <a href="{{ $player->avatar() }}" class="image-gallery">
+                            <div class="background-image circle" style="background-image: url('{{ $player->avatar() }}')"></div>
                         </a>
                     @else
-                        <div class="background-image circle" style="background-image: url('/images/blank-player2.jpg')"></div>
+                        <div class="background-image circle" style="background-image: url('/images/images/blank-player2.jpg')"></div>
                     @endif
 
                 </div>
