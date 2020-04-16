@@ -170,15 +170,12 @@
             </div>
         </div>
 
-        {{--
         <div class="form-group row">
             <label class="col-md-3 col-form-label">Фото</label>
             <div class="col-md-9">
-                {{ form.image.errors }}
-
-                {% if form.image.value != null and form.image.value != '' %}
+                @if (isset($user) && $user->avatar_image)
                     <p>
-                        <img src="/media/{{ form.image.value }}" width="200" alt="User photo">
+                        <img src="{{ asset('storage/avatars/'.$user->avatar_image) }}" width="200" alt="User photo">
                         &nbsp;
                         <label>
                             <input type="checkbox" name="image-clear" id="image-clear_id">
@@ -186,13 +183,11 @@
                             <i class="fa fa-trash"></i>
                         </label>
                     </p>
-                {% endif %}
+                @endif
 
-
-                <input type="file" name="image" accept="image/*">
+                <input type="file" name="avatar_image" accept="image/*">
             </div>
         </div>
-        --}}
 
         @empty($user)
             <div class="form-group row">

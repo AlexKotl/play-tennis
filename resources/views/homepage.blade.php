@@ -129,7 +129,7 @@
                         @foreach ($players as $player)
                             <a href="{{ route('player', $player->id) }}" class="col-4">
                                 <div class="player ">
-                                    <div class="background-image circle square" style="background-image: url('images/blank-player2.jpg')"></div>
+                                    <div class="background-image circle square" style="background-image: url('{{ $player->avatar() }}')"></div>
                                     <div class="title">
                                         {{ $player->name }}
                                     </div>

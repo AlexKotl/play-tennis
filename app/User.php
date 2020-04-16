@@ -16,7 +16,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password', 'phone', 'rank', 'about', 'player_since'
+        'name', 'email', 'password', 'phone', 'rank', 'about', 'player_since', 'avatar_image'
     ];
 
     /**
@@ -40,5 +40,15 @@ class User extends Authenticatable
     public function courts()
     {
         return $this->belongsToMany('App\Court');
+    }
+
+    public function avatar()
+    {
+        return $this->avatar_image ? asset('storage/avatars/' . $this->avatar_image) : '/images/blank-player2.jpg';
+    }
+
+    public function nickname()
+    {
+        return explode('@', $this->email)[0];
     }
 }
