@@ -3,13 +3,21 @@ namespace App\Traits;
 
 use Illuminate\Http\UploadedFile;
 use Illuminate\Support\Facades\Storage;
+use Intervention\Image\ImageManagerStatic as Image;
 
 trait UploadTrait
 {
     public function uploadAvatar(UploadedFile $image, $title='')
     {
         $image_name = ($title ? $title . '_' : '') . time() . '.' . $image->extension();
-        $file = $image->storeAs('avatars', $image_name, 'public');
+
+        $image_resize = Image::make($image->getRealPath());
+        $image_resize->resize(1000, 1000, function ($constraint) {
+            $constraint->aspectRatio();
+            $constraint->upsize();
+        });
+        $image_resize->save(storage_path('app/public/avatars/' . $image_name));
+
         return $image_name;
     }
 }
