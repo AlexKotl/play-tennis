@@ -100,25 +100,25 @@
             </div>
 
             <div class="messages-list">
-                {{-- @foreach ($messages as $message)
-                    <div class="message @if ($message->author->id == Auth::User->id) self @endif">
+                @foreach ($messages as $message)
+                    <div class="message @if ($message->author_id == Auth::User()->id) self @endif">
                         <div class="text">
-                            {{!! nl2br(e($message->text)) !!}}
+                            {!! nl2br(e($message->text)) !!}
                         </div>
                         <div class="author">
-                            {{ $message->author->name }}
+                            {{ $message->author_name }}
                         </div>
                         <div class="date">
-                            {{ message.date_created | date:"d.m.Y" }}
-                            {% if message.is_read %}
+                            {{ date('d.m.Y', strtotime($message->created_at)) }}
+                            @if ($message->is_read)
                                 <i class="fa fa-check text-success" title="Сообщение прочитано"></i>
-                            {% else %}
+                            @else
                                 <i class="fa fa-clock-o" title="Сообщение не прочитано"></i>
-                            {% endif %}
+                            @endif
 
                         </div>
                     </div>
-                @endforeach --}}
+                @endforeach
 
                 {{-- {% if request.GET.all_messages == null and messages.length >= 20 %}
                     ...<br>
