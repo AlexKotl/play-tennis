@@ -14,14 +14,14 @@ class UpdateUsersTable extends Migration
     public function up()
     {
         Schema::table('users', function (Blueprint $table) {
-            $table->string('phone')->default('');
-            $table->smallInteger('sex')->default(0); // 1 = male, 2 = female, 0 = not defined
-            $table->boolean('is_looking')->default(false);
+            $table->string('phone')->nullable()->default('');
+            $table->smallInteger('sex')->nullable()->default(0); // 1 = male, 2 = female, 0 = not defined
+            $table->boolean('is_looking')->nullable()->default(false);
             $table->dateTime('is_looking_date')->nullable();
-            $table->float('rank', 3, 1)->default(0);
-            $table->integer('player_since')->default(0);
+            $table->float('rank', 3, 1)->nullable()->default(0);
+            $table->integer('player_since')->nullable()->default(0);
             $table->text('about')->nullable();
-            $table->smallInteger('access_level')->default(0); // 1 - for admins
+            $table->smallInteger('access_level')->nullable()->default(0); // 1 - for admins
         });
     }
 

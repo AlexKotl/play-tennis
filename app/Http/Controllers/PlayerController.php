@@ -20,6 +20,7 @@ class PlayerController extends Controller
         $user->nickname = explode('@', $user->email)[0];
         return view('player.show', [
             'player' => $user,
+            'player_courts' => $user->courts()->get(),
             'messages' => [],
         ]);
     }

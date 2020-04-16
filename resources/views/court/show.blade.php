@@ -56,21 +56,21 @@
             <div class="card">
                 <div class="card-body">
                     <h3>Играют на этом корте:</h3>
-                    @if($court->players_count > 0)
+                    @if (count($players) > 0)
                         <div class="top-players row">
-                            {% for player in players %}
-                                <a href="{% url 'player' player.id %}" class="col-4">
-                                    <div class="player ">
-                                        <div class="background-image circle square" style="background-image: url('{% if player.image != '' %}/media/{{ player.image }}{% else %}{% static 'images/blank-player2.jpg' %}{% endif %}')"></div>
+                            @foreach ($players as $player)
+                                <a href="{{ route('player', $player->id) }}" class="col-4">
+                                    <div class="player">
+                                        <div class="background-image circle square" style="background-image: url('/images/blank-player2.jpg')"></div>
                                         <div class="title">
-                                            {{ player.first_name }}
+                                            {{ $player->name }}
                                         </div>
                                         <div class="description">
-                                            Уровень: <b>{% firstof player.rank '-' %}</b>
+                                            Уровень: <b>{{ $player->rank ?? '-' }}</b>
                                         </div>
                                     </div>
                                 </a>
-                            {% endfor %}
+                            @endforeach
                         </div>
                     @else
                         <div class="alert alert-info">

@@ -65,16 +65,16 @@
             @endif
 
             <br><br>
-            {{-- <h3>Играет на кортах:</h3>
-            {% if player.courts.all.count > 0 %}
-                {% for court in player.courts.all %}
-                    <li><a href="{% url 'court' court.id %}">{{ court.name }}</a></li>
-                {% endfor %}
-            {% else %}
+            <h3>Играет на кортах:</h3>
+            @if (count($player_courts) > 0)
+                @foreach ($player_courts as $court)
+                    <li><a href="{{ route('court', $court->id) }}">{{ $court->name }}</a></li>
+                @endforeach
+            @else
                 <div class="alert alert-primary">
                     Этот игрок не выбрал корты, на которых играет.
                 </div>
-            {% endif %} --}}
+            @endif
 
         </div>
         <div class="col-xs-12 col-md-5">
