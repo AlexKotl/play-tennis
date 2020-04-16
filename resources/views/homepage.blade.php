@@ -134,7 +134,7 @@
                                         {{ $player->name }}
                                     </div>
                                     <div class="description">
-                                        Уровень: <b>{{ $player->rank }}</b>
+                                        Уровень: <b>{{ $player->rank ?? '-' }}</b>
                                     </div>
                                 </div>
                             </a>
