@@ -17,6 +17,7 @@ class Controller extends BaseController
     public function __construct()
     {
         $this->middleware(function ($request, $next) {
+            $friends_count = 0;
             if (Auth::check()) {
                 $unread_messages = Message::where([
                     'recipient_id' => Auth::id(),

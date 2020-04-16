@@ -83,7 +83,7 @@
                 <a href="{{ route('friends') }}" class="menu-item" style="margin-right: 30px">
                     <img src="/images/icons/handshake-white.png" class="icon" alt="">
                     Друзья
-                    <span class="badge badge-danger">{{ $menu_friends_count }}</span>
+                    <span class="badge badge-danger">{{ $menu_friends_count ?? '' }}</span>
                 </a>
             </div>
 
