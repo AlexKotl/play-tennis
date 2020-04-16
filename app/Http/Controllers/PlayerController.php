@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\User;
+use App\Message;
+use Auth;
 
 class PlayerController extends Controller
 {
@@ -25,8 +27,14 @@ class PlayerController extends Controller
         ]);
     }
 
-    public function message($id)
+    public function message($id, Request $request)
     {
-
+        $message = Message::create([
+            'author_id' => Auth::User()->id,
+            'recipient_id' => $id,
+            'text' => $request->input('text'),
+        ]);
+        $message->save();
+        return redirect()->route('player', ['id' => $id])->with('success', 'Сообщение отправлено.');
     }
 }
