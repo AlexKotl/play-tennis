@@ -20,4 +20,12 @@ trait UploadTrait
 
         return $image_name;
     }
+
+    public function deleteAvatar($image_name)
+    {
+        if ($image_name == '') {
+            return true;
+        }
+        return Storage::disk('public')->delete('avatars/' . $image_name);
+    }
 }
