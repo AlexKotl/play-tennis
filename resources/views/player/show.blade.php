@@ -82,7 +82,7 @@
                 <div class="card-body">
                     <h3>Связаться с игроком</h3>
                     @auth
-                        <form action="{% url 'message_player' player.id %}" method="POST" class="message-form">
+                        <form action="{{ route('message_player', $player->id) }}" method="POST" class="message-form">
                             @csrf
                             <div class="form-group">
                                 <textarea name="text" cols="40" rows="3" class="form-control" placeholder="Введите ваше сообщение..." title="" required=""></textarea>

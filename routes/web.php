@@ -29,7 +29,7 @@ Route::get('/courts/{id}', 'CourtController@show')->name('court');
 
 Route::get('/players', 'PlayerController@index')->name('players');
 Route::get('/players/{id}', 'PlayerController@show')->name('player');
-Route::get('/players/{id}/message', 'PlayerController@message')->middleware('auth')->name('message_player');
+Route::post('/players/{id}/message', 'PlayerController@message')->middleware('auth')->name('message_player');
 
 Route::get('/friends', 'CourtController@index')->name('friends');
 
