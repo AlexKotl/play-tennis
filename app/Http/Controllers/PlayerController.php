@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\DB;
 use App\User;
 use App\Message;
 use Auth;
+use Mail;
 
 class PlayerController extends Controller
 {
@@ -54,6 +55,18 @@ class PlayerController extends Controller
             'text' => $request->input('text'),
         ]);
         $message->save();
+
+        // send email
+        $user = User::findOrFail($id);
+        $sender = User::findOrFail(Auth::id());
+        Mail::send('emails.default', [
+            'user' => $user,
+            'sender' => $sender,
+        ], function($m) use ($user) {
+            $m->from('no-reply@playtennis.com.ua', 'Play Tennis');
+            $m->to($user->email, $user->name)->subject('Play Tennis - новое сообщение');
+        });
+
         return redirect()->route('player', ['id' => $id])->with('success', 'Сообщение отправлено.');
     }
 }
