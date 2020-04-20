@@ -114,7 +114,7 @@
                                 var is_selected = element.target.isSelected;
                                 element.target.isSelected = !is_selected;
                                 element.target.setIcon(is_selected ? Icon : IconSelected);
-                                $('input[name=courts][value={{ $court->id }}]').prop('checked', !is_selected);
+                                $('input.court_checkbox[value={{ $court->id }}]').prop('checked', !is_selected);
                             });
 
                             markers['{{ $court->id }}'] = marker;
@@ -122,7 +122,7 @@
                     @endforeach
 
                     $(document).ready(function() {
-                        $('input[name=courts]').on('change', function(element) {
+                        $('input.court_checkbox').on('change', function(element) {
                             if (markers[$(this).val()] !== undefined) {
                                 markers[$(this).val()].fire('click');
                             }
@@ -135,7 +135,7 @@
                     @foreach ($courts as $court)
                         <div class="form-check col-12 col-sm-4">
                             <label class="form-check-label">
-                                <input class="form-check-input" name="courts[]" type="checkbox"
+                                <input class="court_checkbox form-check-input" name="courts[]" type="checkbox"
                                     value="{{ $court->id }}" @if (isset($courts_checked) && in_array($court->id, $courts_checked)) checked @endif />
                                 {{ $court->name }}
                             </label>
