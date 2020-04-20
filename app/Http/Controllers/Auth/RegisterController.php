@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Providers\RouteServiceProvider;
 use App\User;
 use App\Court;
+use App\Traits\UploadTrait;
 use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
@@ -55,6 +56,7 @@ class RegisterController extends \App\Http\Controllers\ProfileController
             'name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
             'password' => ['required', 'string', 'min:8', 'confirmed'],
+            'avatar_image' =>  'image|mimes:jpeg,png,jpg,gif|max:4048',
         ]);
     }
 
@@ -76,8 +78,15 @@ class RegisterController extends \App\Http\Controllers\ProfileController
             'player_since' => $data['player_since'],
         ]);
 
-        $courts = Court::find($data['courts']);
-        $user->courts()->sync($courts);
+        if (isset($data['courts'])) {
+            $courts = Court::find($data['courts']);
+            $user->courts()->sync($courts);
+        }
+
+        if (isset($data['avatar_image'])) {
+            $user->avatar_image = $this->uploadAvatar(request()->file('avatar_image'));
+            $user->save();
+        }
 
         return $user;
     }
