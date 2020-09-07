@@ -4,6 +4,7 @@ namespace App\Console;
 
 use Illuminate\Console\Scheduling\Schedule;
 use Illuminate\Foundation\Console\Kernel as ConsoleKernel;
+use Illuminate\Support\Facades\DB;
 
 class Kernel extends ConsoleKernel
 {
@@ -24,7 +25,22 @@ class Kernel extends ConsoleKernel
      */
     protected function schedule(Schedule $schedule)
     {
-        // $schedule->command('inspire')->hourly();
+        // Recaount friends count
+        $schedule->call(function () {
+            DB::statement("UPDATE users SET friends_count = (
+                SELECT COUNT(*) FROM (
+                    SELECT *, (COUNT(DISTINCT id) = 2) is_friends  FROM (
+                        SELECT id, author_id, recipient_id, IF (author_id > recipient_id, CONCAT(recipient_id, '-', author_id), CONCAT(author_id, '-',recipient_id) ) AS pair_id
+                        FROM messages
+                        GROUP BY author_id, recipient_id
+                    ) pairs
+                    GROUP BY pair_id
+                    HAVING is_friends
+                ) sub
+                WHERE author_id = users.id OR recipient_id = users.id
+            ) ");
+
+        })->everyFiveMinutes();
     }
 
     /**
