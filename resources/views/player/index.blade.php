@@ -44,12 +44,16 @@
                         <h5 class="card-title">{{ $player->name }}</h5>
                         <p class="card-text">
                             @if ($player->rank > 0)
-                                <i class="fa fa-trophy"></i>
+                                <i class="fa fa-trophy" style="margin:0 4px 0 2px"></i>
                                 Уровень: <strong>{{ $player->rank }}</strong> <br>
                             @endif
                             @if ($player->courts_count > 0)
-                                <i class="fa fa-map-marker" style="margin:0 2px"></i>
+                                <i class="fa fa-map-marker" style="margin:0 5px"></i>
                                 Корты: <strong>{{ $player->courts_count }}</strong>
+                            @endif
+                            @if ($player->friends_count > 0)
+                                <i class="fa fa-handshake-o"></i>
+                                Друзья: <strong>{{ $player->friends_count }}</strong>
                             @endif
                         </p>
                     </div>

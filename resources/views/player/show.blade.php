@@ -31,17 +31,17 @@
     <div class="row">
         <div class="col-xs-12 col-md-7 pb-4">
             <div class="row">
-                <div class="col-md-3">
+                <div class="col-md-3 col-5">
                     @if ($player->avatar_image)
                         <a href="{{ $player->avatar() }}" class="image-gallery" target="_blank">
-                            <div class="background-image circle" style="background-image: url('{{ $player->avatar() }}')"></div>
+                            <div class="background-image circle avatar" style="background-image: url('{{ $player->avatar() }}')"></div>
                         </a>
                     @else
-                        <div class="background-image circle" style="background-image: url('/images/blank-player2.jpg')"></div>
+                        <div class="background-image circle avatar" style="background-image: url('/images/blank-player2.jpg')"></div>
                     @endif
 
                 </div>
-                <div class="col-md-9">
+                <div class="col-md-9 col-7">
                     <h1>
                         {{ $player->name }}
                         <small class="ml-2">({{ $player->nickname }})</small>
@@ -56,25 +56,42 @@
                         <i class="fa fa-phone"></i>
                         Телефон: <b>{{ $player->phone }}</b> <br>
                     @endif
+
+                    <a class="btn btn-primary mt-3 d-inline-block d-sm-inline-block d-md-none" data-toggle="collapse" href="#user-info" role="button" aria-expanded="false">
+                        Больше информации о игроке
+                        <i class="fa fa-chevron-down"></i>
+                    </a>
                 </div>
             </div>
 
-            @if ($player->about != '')
-                <br><br><b>О себе:</b><br>
-                {!! nl2br(e($player->about)) !!}
-            @endif
 
-            <br><br>
-            <h3>Играет на кортах:</h3>
-            @if (count($player_courts) > 0)
-                @foreach ($player_courts as $court)
-                    <li><a href="{{ route('court', $court->id) }}">{{ $court->name }}</a></li>
-                @endforeach
-            @else
-                <div class="alert alert-primary">
-                    Этот игрок не выбрал корты, на которых играет.
-                </div>
-            @endif
+
+            <div class="collapse multi-collapse d-md-block" id="user-info">
+                @if ($player->about != '')
+                    <br><br><b>О себе:</b><br>
+                    <div class="card card-body">
+                        {!! nl2br(e($player->about)) !!}
+                    </div>
+                @endif
+
+                <br><br>
+                <h3>Играет на кортах:</h3>
+                @if (count($player_courts) > 0)
+                    @foreach ($player_courts as $court)
+                        <li><a href="{{ route('court', $court->id) }}">{{ $court->name }}</a></li>
+                    @endforeach
+                @else
+                    <div class="alert alert-primary">
+                        Этот игрок не выбрал корты, на которых играет.
+                    </div>
+                @endif
+            </div>
+
+
+            <div class="more-info">
+
+            </div>
+
 
         </div>
         <div class="col-xs-12 col-md-5">
