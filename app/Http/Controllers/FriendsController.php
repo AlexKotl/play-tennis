@@ -11,7 +11,7 @@ class FriendsController extends Controller
     public function index()
     {
         $messages = DB::table('messages')
-            ->select('messages.*', 'u1.name as author_name', 'u2.name as recipient_name')
+            ->select('messages.*', 'u1.name as author_name', 'u2.name as recipient_name', 'u1.avatar_image')
             ->leftJoin('users as u1', 'u1.id', 'messages.author_id')
             ->leftJoin('users as u2', 'u2.id', 'messages.recipient_id')
             ->where('author_id', Auth::id())
