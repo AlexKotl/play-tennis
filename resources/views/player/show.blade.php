@@ -58,7 +58,7 @@
                     @endif
 
                     <a class="btn btn-primary mt-3 d-inline-block d-sm-inline-block d-md-none" data-toggle="collapse" href="#user-info" role="button" aria-expanded="false">
-                        Больше информации о игроке
+                        Больше информации об игроке
                         <i class="fa fa-chevron-down"></i>
                     </a>
                 </div>

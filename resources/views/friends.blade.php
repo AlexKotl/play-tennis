@@ -22,8 +22,8 @@
                 <div class="row">
                     <div class="col-4 col-sm-1 justify-content-center align-self-center">
                         <a href="{{ route('player', $message->friend_id) }}">
-                            @if ($message->avatar_image)
-                                <div class="background-image circle" style="background-image: url('/storage/avatars/{{ $message->avatar_image }}')"></div>
+                            @if ($message->avatar)
+                                <div class="background-image circle" style="background-image: url('/storage/avatars/{{ $message->avatar }}')"></div>
                             @else
                                 <div class="background-image circle" style="background-image: url('/images/blank-player2.jpg')"></div>
                             @endif
