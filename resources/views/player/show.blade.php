@@ -33,7 +33,7 @@
             <div class="row">
                 <div class="col-md-3">
                     @if ($player->avatar_image)
-                        <a href="{{ $player->avatar() }}" class="image-gallery">
+                        <a href="{{ $player->avatar() }}" class="image-gallery" target="_blank">
                             <div class="background-image circle" style="background-image: url('{{ $player->avatar() }}')"></div>
                         </a>
                     @else
