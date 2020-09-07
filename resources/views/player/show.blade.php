@@ -37,7 +37,7 @@
                             <div class="background-image circle" style="background-image: url('{{ $player->avatar() }}')"></div>
                         </a>
                     @else
-                        <div class="background-image circle" style="background-image: url('/images/images/blank-player2.jpg')"></div>
+                        <div class="background-image circle" style="background-image: url('/images/blank-player2.jpg')"></div>
                     @endif
 
                 </div>
