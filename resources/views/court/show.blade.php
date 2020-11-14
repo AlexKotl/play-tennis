@@ -21,7 +21,7 @@
             @if ($court->url != '')
                 <b>Сайт</b>: <a href="{{ $court->url }}">{{ $court->url }}</a> <br>
             @endisset
-            <b>Игроков на корте</b>: {{ $court->players_count }} <br><br>
+            <b>Игроков на корте</b>: {{ count($players) }} <br><br>
 
 
             @if ($court->map_lat != 0 && $court->map_lng != 0)
