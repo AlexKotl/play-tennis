@@ -11,7 +11,12 @@ class CourtController extends Controller
 {
     public function index()
     {
-        $courts = DB::table('courts')->where('flag', 1)->get();
+        $courts = DB::table('courts')
+            ->select('courts.*', DB::raw('count(court_user.id) as users_count'))
+            ->leftJoin('court_user', 'courts.id', '=', 'court_user.court_id')
+            ->where('courts.flag', 1)
+            ->groupBy('court_user.court_id')
+            ->get();
         return view('court.index', ['courts' => $courts]);
     }
 

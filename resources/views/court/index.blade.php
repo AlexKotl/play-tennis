@@ -62,10 +62,10 @@
                             {{ $court->phone }}
                         </td>
                         <td class="d-none d-sm-table-cell">
-                            {{-- {% if court.players_count > 0 %}
+                            @if ($court->users_count > 0)
                                 <i class="fa fa-users"></i>
-                                {{ court.players_count }} {{ court.players_count | pluralize:"игрок,игрока,игроков" }}
-                            {% endif %} --}}
+                                {{ $court->users_count }}
+                            @endif
                         </td>
                         <td class="d-none d-sm-table-cell">
                             <a href="{{ route('court', $court->id) }}" class="btn btn-primary btn-sm">
