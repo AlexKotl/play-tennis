@@ -10,4 +10,9 @@ class Court extends Model
     {
         return $this->belongsToMany('App\User');
     }
+
+    public function comments()
+    {
+        return $this->hasMany('App\CourtComment');
+    }
 }

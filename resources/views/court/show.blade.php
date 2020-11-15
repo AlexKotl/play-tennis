@@ -52,9 +52,11 @@
             @endif
 
             <h3>Отзывы о корте:</h3>
-            @if (false)
-                @foreach ($player_courts as $court)
-                    <li><a href="{{ route('court', $court->id) }}">{{ $court->name }}</a></li>
+            @if (count($comments) > 0)
+                @foreach ($comments as $comment)
+                    <div class="card card-body mt-2">
+                        {{ $comment->comment }}
+                    </div>
                 @endforeach
             @else
                 <div class="alert alert-primary">
@@ -63,7 +65,7 @@
             @endif
 
             @auth
-                <form action="{{ route('comment_court', $court->id) }}" method="POST" class="message-form">
+                <form action="{{ route('comment_court', $court->id) }}" method="POST" class="message-form mt-3">
                     @csrf
                     <div class="form-group">
                         <textarea name="comment" cols="40" rows="3" class="form-control" placeholder="Ваш отзыв о корте..." title="" required=""></textarea>

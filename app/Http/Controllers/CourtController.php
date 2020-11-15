@@ -28,7 +28,8 @@ class CourtController extends Controller
         $court = Court::find($id);
         return view('court.show', [
             'court' => $court,
-            'players' => $court->users()->get()
+            'players' => $court->users()->get(),
+            'comments' => $court->comments()->get(),
         ]);
     }
 
