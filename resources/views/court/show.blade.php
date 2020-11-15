@@ -48,27 +48,34 @@
                         }
                     })
                 </script>
-                <br><br>
+                <br>
             @endif
 
+            <hr>
             <h3>Отзывы о корте:</h3>
             @if (count($comments) > 0)
-                @foreach ($comments as $comment)
-                    <div class="card card-body mt-2">
-                        {{ $comment->comment }}
-                    </div>
-                @endforeach
-            @else
-                <div class="alert alert-primary">
-                    Еще никто не оставил отзыв про этот корт.
+                <div class="messages-list court">
+                    @foreach ($comments as $comment)
+                        <div class="message">
+                            <div class="text">
+                                {{ $comment->comment }}
+                            </div>
+                            <div class="author">
+                                <a href="{{ route('player', $comment->user->id) }}">{{ $comment->user->name }}</a>
+                            </div>
+                            <div class="date">
+                                {{ date('d.m.Y', strtotime($comment->created_at)) }}
+                            </div>
+                        </div>
+                    @endforeach
                 </div>
             @endif
 
             @auth
-                <form action="{{ route('comment_court', $court->id) }}" method="POST" class="message-form mt-3">
+                <form action="{{ route('comment_court', $court->id) }}" method="POST" class="message-form mt-5">
                     @csrf
                     <div class="form-group">
-                        <textarea name="comment" cols="40" rows="3" class="form-control" placeholder="Ваш отзыв о корте..." title="" required=""></textarea>
+                        <textarea name="comment" cols="40" rows="3" class="form-control" placeholder="Напишите ваш отзыв о корте..." title="" required=""></textarea>
                     </div>
                     <input type="submit" value="Отправить" class="btn btn-primary">
                 </form>

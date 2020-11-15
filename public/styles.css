@@ -218,6 +218,10 @@ h1 small {
       text-align: right; }
     .messages-list .message.self .date {
       text-align: right; }
+.messages-list.court .text {
+    background-color: #ededed;
+    color: black;
+}
 
 .friends-list .row {
   border-bottom: 1px solid #eee;
