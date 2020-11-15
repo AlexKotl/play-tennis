@@ -4,8 +4,11 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Auth;
+use Mail;
 use App\Court;
 use App\User;
+use App\CourtComment;
 
 class CourtController extends Controller
 {
@@ -25,7 +28,31 @@ class CourtController extends Controller
         $court = Court::find($id);
         return view('court.show', [
             'court' => $court,
-            'players' => $court->users()->get()
+            'players' => $court->users()->get(),
+            'comments' => $court->comments()->get(),
         ]);
+    }
+
+    public function comment($id, Request $request)
+    {
+        $comment = CourtComment::create([
+            'user_id' => Auth::id(),
+            'court_id' => $id,
+            'comment' => $request->input('comment'),
+        ]);
+        $comment->save();
+
+        // send email
+        $user = User::findOrFail($id);
+        $sender = User::findOrFail(Auth::id());
+        Mail::send('emails.court_comment', [
+            'comment' => $request->input('comment'),
+            'id' => $id,
+        ], function($m) use ($user) {
+            $m->from('no-reply@playtennis.com.ua', 'Play Tennis');
+            $m->to('slicer256@gmail.com', "Alex")->subject('Play Tennis - комментарий к корту');
+        });
+
+        return redirect()->route('court', ['id' => $id])->with('success', 'Комментарий добавлен.');
     }
 }
