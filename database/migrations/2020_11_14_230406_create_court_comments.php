@@ -17,6 +17,7 @@ class CreateCourtComments extends Migration
             $table->id();
             $table->foreignId('court_id')->constrained('courts');
             $table->foreignId('user_id')->constrained('users');
+            $table->text('comment');
             $table->timestamps();
         });
     }

@@ -26,6 +26,7 @@ Route::post('/profile', 'ProfileController@store')->name('profile');
 
 Route::get('/courts', 'CourtController@index')->name('courts');
 Route::get('/courts/{id}', 'CourtController@show')->name('court');
+Route::post('/courts/{id}/comment', 'CourtController@comment')->middleware('auth')->name('comment_court');
 
 Route::get('/players', 'PlayerController@index')->name('players');
 Route::get('/players/{id}', 'PlayerController@show')->name('player');

@@ -51,6 +51,33 @@
                 <br><br>
             @endif
 
+            <h3>Отзывы о корте:</h3>
+            @if (false)
+                @foreach ($player_courts as $court)
+                    <li><a href="{{ route('court', $court->id) }}">{{ $court->name }}</a></li>
+                @endforeach
+            @else
+                <div class="alert alert-primary">
+                    Еще никто не оставил отзыв про этот корт.
+                </div>
+            @endif
+
+            @auth
+                <form action="{{ route('comment_court', $court->id) }}" method="POST" class="message-form">
+                    @csrf
+                    <div class="form-group">
+                        <textarea name="comment" cols="40" rows="3" class="form-control" placeholder="Ваш отзыв о корте..." title="" required=""></textarea>
+                    </div>
+                    <input type="submit" value="Отправить" class="btn btn-primary">
+                </form>
+
+
+            @else
+                <div class="alert alert-warning">
+                    <a href="{{ route('login') }}">Войдите</a>, чтобы добавить свой отзыв о корте.
+                </div>
+            @endauth
+
         </div>
         <div class="col-md-5">
             <div class="card">
