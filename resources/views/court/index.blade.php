@@ -45,6 +45,7 @@
                     <th>Адрес</th>
                     <th class="d-none d-sm-table-cell">Телефон</th>
                     <th class="d-none d-sm-table-cell">Игроки</th>
+                    <th class="d-none d-sm-table-cell">Отзывы</th>
                     <th class="d-none d-sm-table-cell" data-sorter="false"></th>
                 </tr>
             </thead>
@@ -65,6 +66,12 @@
                             @if ($court->users_count > 0)
                                 <i class="fa fa-users"></i>
                                 {{ $court->users_count }}
+                            @endif
+                        </td>
+                        <td class="d-none d-sm-table-cell">
+                            @if ($court->comments_count > 0)
+                                <i class="fa fa-comments"></i>
+                                {{ $court->comments_count }}
                             @endif
                         </td>
                         <td class="d-none d-sm-table-cell">
