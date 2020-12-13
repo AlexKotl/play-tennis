@@ -76,6 +76,10 @@
                     <img src="/images/icons/racket-white.png" class="icon" alt="">
                     Игроки
                 </a>
+                <a href="{{ route('trainers') }}" class="menu-item">
+                    <img src="/images/icons/whistle-white.png" class="icon" alt="">
+                    Тренеры
+                </a>
                 <a href="{{ route('courts') }}" class="menu-item">
                     <img src="/images/icons/court-white.png" class="icon" alt="">
                     Корты

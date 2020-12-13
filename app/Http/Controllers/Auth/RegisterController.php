@@ -75,6 +75,8 @@ class RegisterController extends \App\Http\Controllers\ProfileController
             'phone' => $data['phone'],
             'rank' => $data['rank'],
             'about' => $data['about'],
+            'is_trainer' => $data['is_trainer'],
+            'trainer_price' => $data['trainer_price'],
             'player_since' => $data['player_since'],
         ]);
 
