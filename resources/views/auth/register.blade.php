@@ -31,6 +31,10 @@
             if ($(window).width() <= 576) {
                 $('#collapse_map').removeClass('show');
             }
+
+            $('.is-trainer-row input').change(function() {
+                $('.trainer-price').toggleClass('d-none');
+            });
         })
     </script>
 
@@ -150,6 +154,29 @@
             <div class="col-md-9">
                 {{Form::select('rank', $ranks, isset($user) ? $user->rank : '', ['class' => 'form-control'])}}
                 <small class="form-text text-muted"><a href="#" data-toggle="modal" data-target="#rankModal">Как определить свой уровень?</a></small>
+            </div>
+        </div>
+
+        <div class="form-group row is-trainer-row">
+            <label class="col-md-3 col-form-label">Тренер?</label>
+            <div class="col-md-9">
+                <label>
+                    {{Form::checkbox('is_trainer', true, isset($user) ? $user->is_trainer : false)}}
+                    Я предоставляю услуги <b>тренинга</b><br>
+                    <small>
+                        Если вы тренируете других игроков - отметьте эту галочку и ваш профиль появится в разделе тренеров. Подробную информацию о тренировках можете указать в графе "О себе".
+                    </small>
+                </label>
+            </div>
+        </div>
+
+        <div class="form-group row trainer-price {{ isset($user) && $user->is_trainer ? '' : 'd-none' }}">
+            <label class="col-md-3 col-form-label">
+                Цена тренировки
+                <small>(грн)</small>
+            </label>
+            <div class="col-md-9">
+                {{Form::number('trainer_price', isset($user) ? $user->trainer_price : '', ['class' => 'form-control'])}}
             </div>
         </div>
 

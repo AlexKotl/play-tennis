@@ -67,6 +67,9 @@ class ProfileController extends Controller
         $user->rank = $request->input('rank');
         $user->player_since = $request->input('player_since');
         $user->about = $request->input('about');
+        $user->is_trainer = $request->input('is_trainer');
+        $user->trainer_price = $request->input('trainer_price');
+
         if ($request->has('avatar_image')) {
             $this->deleteAvatar($user->avatar_image); // delete old image if exists
             $user->avatar_image = $this->uploadAvatar($request->file('avatar_image'));

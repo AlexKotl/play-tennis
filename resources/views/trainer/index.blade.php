@@ -20,6 +20,13 @@
                     <div class="card-body">
                         <h5 class="card-title">{{ $trainer->name }}</h5>
                         <p class="card-text">
+                            <p>
+                                {{ $trainer->about }}
+                            </p>
+                            @if ($trainer->trainer_price > 0)
+                                <i class="fa fa-dollar" style="margin:0 5px"></i>
+                                Час тренировки: <strong>{{ $trainer->trainer_price }}</strong> грн <br>
+                            @endif
                             @if ($trainer->courts_count > 0)
                                 <i class="fa fa-map-marker" style="margin:0 5px"></i>
                                 Корты: <strong>{{ $trainer->courts_count }}</strong>

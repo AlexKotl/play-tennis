@@ -11,7 +11,7 @@ class TrainerController extends Controller
     public function index()
     {
         return view('trainer.index', [
-            'trainers' => User::orderBy('id', 'desc')->get(),
+            'trainers' => User::where('is_trainer', 1)->orderBy('id', 'desc')->get(),
         ]);
     }
 
