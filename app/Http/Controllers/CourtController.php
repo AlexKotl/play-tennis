@@ -15,7 +15,7 @@ class CourtController extends Controller
     public function index()
     {
         $courts = DB::table('courts')
-            ->select('courts.*', DB::raw('count(court_user.id) as users_count'), DB::raw('count(court_comments.id) as comments_count'))
+            ->select('courts.*', DB::raw('count(distinct court_user.id) as users_count'), DB::raw('count(distinct court_comments.id) as comments_count'))
             ->leftJoin('court_user', 'courts.id', '=', 'court_user.court_id')
             ->leftJoin('court_comments', 'courts.id', '=', 'court_comments.court_id')
             ->where('courts.flag', 1)
@@ -29,7 +29,7 @@ class CourtController extends Controller
         $court = Court::find($id);
         return view('court.show', [
             'court' => $court,
-            'players' => $court->users()->get(),
+            'players' => $court->users()->get()->reverse(),
             'comments' => $court->comments()->get(),
         ]);
     }
