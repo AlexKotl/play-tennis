@@ -28,6 +28,7 @@ Route::get('/courts', 'CourtController@index')->name('courts');
 Route::get('/courts/{id}', 'CourtController@show')->name('court');
 Route::post('/courts/{id}/comment', 'CourtController@comment')->middleware('auth')->name('comment_court');
 
+Route::get('/trainers', 'TrainerController@index')->name('trainers');
 Route::get('/players', 'PlayerController@index')->name('players');
 Route::get('/players/{id}', 'PlayerController@show')->name('player');
 Route::post('/players/{id}/message', 'PlayerController@message')->middleware('auth')->name('message_player');
