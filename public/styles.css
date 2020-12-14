@@ -258,4 +258,13 @@ h1 small {
   .top-menu .menu .menu-item {
     margin: 4px 8px; }
   .top-menu .menu .icon {
-    margin: 0 2px; } }
+    margin: 0 2px; }
+    .menu.main-chapters {
+        display: flex;
+    }
+    .menu.main-chapters a {
+        text-align: center;
+        font-weight: bold;
+    }
+}
+
