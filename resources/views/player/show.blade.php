@@ -33,7 +33,7 @@
             <div class="row">
                 <div class="col-md-3 col-5">
                     @if ($player->avatar_image)
-                        <a href="{{ $player->avatar() }}" class="image-gallery" target="_blank">
+                        <a href="{{ $player->avatar() }}" class="image-gallery" target="_blank" data-toggle="modal" data-target="#playerPicture">
                             <div class="background-image circle avatar" style="background-image: url('{{ $player->avatar() }}')"></div>
                         </a>
                     @else
@@ -143,6 +143,16 @@
                 {% endif %} --}}
             </div>
 
+        </div>
+    </div>
+
+    <div class="modal fade" id="playerPicture" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-body">
+                    <img src="{{ $player->avatar() }}" alt="" data-dismiss="modal" style="max-width: 100%">
+                </div>
+            </div>
         </div>
     </div>
 
