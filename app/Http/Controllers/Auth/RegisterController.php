@@ -68,6 +68,10 @@ class RegisterController extends \App\Http\Controllers\ProfileController
      */
     protected function create(array $data)
     {
+        if (!array_key_exists('is_trainer', $data)) {
+            $data['is_trainer'] = 0;
+        }
+
         $user = User::create([
             'name' => $data['name'],
             'email' => $data['email'],
