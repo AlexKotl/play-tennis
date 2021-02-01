@@ -17,12 +17,12 @@
                 <div class="row">
                     <div class="col-sm-5 text-center">
                         <span class="rank">
-                            {{Form::select('rank_from', $ranks, '', ['class' => 'form-control pull-left'])}}
-                            {{Form::select('rank_to', $ranks, '', ['class' => 'form-control pull-right'])}}
+                            {{Form::select('rank_from', array_merge(['' => 'Уровень от'], $ranks), app('request')->input('rank_from'), ['class' => 'form-control pull-left'])}}
+                            {{Form::select('rank_to', array_merge(['' => 'Уровень до'], $ranks), app('request')->input('rank_to'), ['class' => 'form-control pull-right'])}}
                         </span>
                     </div>
                     <div class="col-sm-4 text-center">
-                        {{Form::text('email', '', ['class' => 'form-control', 'placeholder' => 'Поиск по имени'])}}
+                        {{Form::text('name', app('request')->input('name'), ['class' => 'form-control', 'placeholder' => 'Поиск по имени'])}}
                     </div>
                     <div class="col-sm-3 text-center">
                         <button type="submit" class="btn btn-primary ">
