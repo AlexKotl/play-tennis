@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\User;
 use App\Message;
+use App\Http\Controllers\ProfileController;
 use Auth;
 use Mail;
 
@@ -15,6 +16,7 @@ class PlayerController extends Controller
     {
         return view('player.index', [
             'players' => User::orderBy('id', 'desc')->get(),
+            'ranks' => (new ProfileController())->getRanks(),
         ]);
     }
 

@@ -11,18 +11,18 @@
 @section('content')
     <h1>Игроки</h1>
 
-    {{-- <div class="card mt-3 mb-3">
+    <div class="card mt-3 mb-3">
         <div class="card-body players-filters">
             <form action="" method="get">
                 <div class="row">
                     <div class="col-sm-5 text-center">
                         <span class="rank">
-                            {% render_field filter.form.rank__gt class="form-control pull-left" %}
-                            {% render_field filter.form.rank__lt class="form-control pull-right" %}
+                            {{Form::select('rank_from', $ranks, '', ['class' => 'form-control pull-left'])}}
+                            {{Form::select('rank_to', $ranks, '', ['class' => 'form-control pull-right'])}}
                         </span>
                     </div>
                     <div class="col-sm-4 text-center">
-                        {% render_field filter.form.first_name class="form-control" placeholder="Поиск по имени" %}
+                        {{Form::text('email', '', ['class' => 'form-control', 'placeholder' => 'Поиск по имени'])}}
                     </div>
                     <div class="col-sm-3 text-center">
                         <button type="submit" class="btn btn-primary ">
@@ -32,7 +32,7 @@
                 </div>
             </form>
         </div>
-    </div> --}}
+    </div>
 
     <div class="players-list row">
         @foreach ($players as $player)
