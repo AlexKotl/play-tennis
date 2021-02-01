@@ -6,15 +6,32 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\User;
 use App\Message;
+use App\Http\Controllers\ProfileController;
 use Auth;
 use Mail;
 
 class PlayerController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
+        $players = new User;
+        if ($request->input('rank_from') > 0) {
+            $players = $players->where('rank', '>=', $request->input('rank_from'));
+        }
+        if ($request->input('rank_to') > 0) {
+            $players = $players->where('rank', '<=', $request->input('rank_to'));
+        }
+        if ($request->input('name') != '') {
+            $players = $players->where('name', 'like', '%' . $request->input('name') . '%');
+        }
+        $players = $players->orderBy('id', 'desc')->get();
+
+        $ranks = (new ProfileController())->getRanks();
+        array_shift($ranks);
+
         return view('player.index', [
-            'players' => User::orderBy('id', 'desc')->get(),
+            'players' => $players,
+            'ranks' => $ranks,
         ]);
     }
 
