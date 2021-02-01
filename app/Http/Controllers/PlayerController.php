@@ -27,7 +27,7 @@ class PlayerController extends Controller
         $players = $players->orderBy('id', 'desc')->get();
 
         $ranks = (new ProfileController())->getRanks();
-        array_shift($ranks);
+        $ranks[''] = '';
 
         return view('player.index', [
             'players' => $players,
