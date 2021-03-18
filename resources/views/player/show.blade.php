@@ -52,9 +52,15 @@
                         <i class="fa fa-calendar"></i>
                         Игровой опыт: <b>с {{ $player->player_since }}</b> года <br>
                     @endif
-                    @if (false && $player->phone != '')
+                    @if ($player->phone != '')
                         <i class="fa fa-phone"></i>
-                        Телефон: <b>{{ $player->phone }}</b> <br>
+                        Телефон:
+                        @if ($show_phone)
+                            <b><a href='tel:{{ $player->phone }}' class="text-dark">{{ $player->phone }}</a></b>
+                        @else
+                            <small title="Напишите пользователю сообщение, и после ответа телефон будет открыт."><i>скрыт</i> </small>
+                        @endif
+                        <br>
                     @endif
 
                     <a class="btn btn-primary mt-3 d-inline-block d-sm-inline-block d-md-none" data-toggle="collapse" href="#user-info" role="button" aria-expanded="false">
@@ -104,7 +110,12 @@
                             <div class="form-group">
                                 <textarea name="text" cols="40" rows="3" class="form-control" placeholder="Введите ваше сообщение..." title="" required=""></textarea>
                             </div>
+                            <div class="d-flex">
                             <input type="submit" value="Отправить" class="btn btn-primary">
+                            @if ($show_phone_warning)
+                                <small class="pl-3">После вашего ответа этот пользователь сможет <b>видеть ваш номер телефона</b>.</small>
+                            @endif
+                            </div>
                         </form>
 
 

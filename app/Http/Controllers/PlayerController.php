@@ -40,6 +40,9 @@ class PlayerController extends Controller
         $user = User::find($id);
         $user->nickname = explode('@', $user->email)[0];
         $messages = [];
+        $show_phone_warning = false;
+        $show_phone = false;
+
         if (Auth::check()) {
             $auth_user_id = Auth::id();
             $messages = DB::table('messages')
@@ -47,6 +50,7 @@ class PlayerController extends Controller
                 ->leftJoin('users', 'users.id', '=', 'messages.author_id')
                 ->whereIn('recipient_id', [$id, $auth_user_id])
                 ->whereIn('author_id', [$id, $auth_user_id])
+                ->where('recipient_id', '!=', 'author_id')
                 ->orderBy('messages.id', 'desc')->get();
 
             // mark messages as read
@@ -55,12 +59,21 @@ class PlayerController extends Controller
                     ->where(['author_id' => $id, 'recipient_id' => Auth::id()])
                     ->update(['is_read' => true]);
             }
+
+            // check if user sent us messages, but we have not replied yet
+            $show_phone_warning = count($messages) > 0 && DB::table('messages')->where(['author_id' => Auth::id(), 'recipient_id' => $id])->count() === 0;
+
+            // if user has replied us - we can see phone
+            $show_phone = DB::table('messages')->where(['author_id' => $id, 'recipient_id' => Auth::id()])->count() > 0;
+
         }
 
         return view('player.show', [
             'player' => $user,
             'player_courts' => $user->courts()->get(),
             'messages' => $messages,
+            'show_phone_warning' => $show_phone_warning,
+            'show_phone' => $show_phone,
         ]);
     }
 
