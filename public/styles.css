@@ -268,3 +268,31 @@ h1 small {
     }
 }
 
+
+.pagination {
+  margin: 0;
+  padding: 0;
+  align-content: center;
+  
+}
+.pagination li {
+  margin: 0;
+  list-style: none;
+  display: inline-block;
+}
+.pagination li a {
+  text-decoration: none;
+  padding: 5px 10px;
+
+  
+}
+.pagination li span {
+  padding: 5px 10px;
+}
+.pagination li:hover {
+  background-color: #e9e9e9;
+}
+.pagination li.active {
+  font-weight: 600;
+  border: 1px solid #cdcdcd;
+}

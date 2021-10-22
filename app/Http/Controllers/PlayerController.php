@@ -24,7 +24,7 @@ class PlayerController extends Controller
         if ($request->input('name') != '') {
             $players = $players->where('name', 'like', '%' . $request->input('name') . '%');
         }
-        $players = $players->orderBy('id', 'desc')->get();
+        $players = $players->orderBy('id', 'desc')->paginate(32)->withQueryString();
 
         $ranks = (new ProfileController())->getRanks();
         $ranks[''] = '';

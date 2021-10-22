@@ -62,22 +62,8 @@
         @endforeach
     </div>
 
-    {{-- <div class="pagination mt-4">
-        <span class="step-links">
-            {% if players.has_previous %}
-                <a href="?rank__gt={{ request.GET.rank__gt }}&rank__lt={{ request.GET.rank__lt }}&first_name={{ request.GET.first_name }}&page={{ players.previous_page_number }}" class="btn btn-light font-weight-bold mr-2">&laquo; Назад</a>
-            {% endif %}
-
-            {% if players.has_next %}
-                <a href="?rank__gt={{ request.GET.rank__gt }}&rank__lt={{ request.GET.rank__lt }}&first_name={{ request.GET.first_name }}&page={{ players.next_page_number }}" class="btn btn-light font-weight-bold">Вперед &raquo;</a>
-            {% endif %}
-
-            {% if players.has_next or players.has_previous %}
-            <small class="current ml-3">
-                Страница {{ players.number }} из {{ players.paginator.num_pages }}
-            </small>
-            {% endif %}
-        </span>
-    </div> --}}
+    <div class="text-center mt-3">
+        {{ $players->onEachSide(1)->links('components/pagination') }}
+    </div>
 
 @endsection
