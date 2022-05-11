@@ -108,7 +108,7 @@
 
     <div class="site-footer">
         <div class="top-menu-container clearfix text-center justify-content-center align-self-center">
-            PlayTennis.com.ua - Поиск партнеров по теннису в Киеве &copy; {{ date('Y') }}
+            PlayTennis.com.ua - Поиск партнеров по теннису в Киеве &copy; 2020-{{ date('Y') }}
             <br>Разработка: <a href="https://www.facebook.com/kotl.alex">Александр Котляров</a>
         </div>
     </div>
