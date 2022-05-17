@@ -1,19 +1,19 @@
 @extends('layouts.app')
 
 @section('site_title')
-    Ваши друзья
+    Ваші друзі
 @endsection
 
 @section('breadcrumbs')
-    <a href="">Ваши друзья</a>
+    <a href="">Ваші друзі</a>
 @endsection
 
 @section('content')
-    <h1>Ваши друзья</h1>
+    <h1>Ваші друзі</h1>
 
         @if (count($messages) === 0)
             <div class="alert alert-info">
-                Здесь будет список ваших переписок с другими игроками.
+                Тут буде відображатися переписки з іншими користувачами.
             </div>
         @endif
 

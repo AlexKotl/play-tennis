@@ -31,19 +31,19 @@
                         <input class="form-check-input" type="checkbox" name="remember" id="remember" checked>
 
                         <label class="form-check-label" for="remember">
-                            Запомнить
+                            Запамʼятати
                         </label>
                     </div>
                     <div class="row">
                         <div class="col-6">
                             <button type="submit" class="btn btn-primary">
-                                Вход
+                                Увійти
                             </button>
                         </div>
                         <div class="col-6 text-right">
                             @if (Route::has('password.request'))
                                 <a href="{{ route('password.request') }}">
-                                    Забыли пароль?
+                                    Забули пароль?
                                 </a>
                             @endif
                         </div>

@@ -44,11 +44,11 @@
                 @guest
                     <a href="{{ route('login') }}" class="btn btn-outline-primary">
                         <i class="fa fa-sign-in"></i>
-                        Войти
+                        Увійти
                     </a>
                     <a href="{{ route('register') }}" class="btn btn-primary">
                         <i class="fa fa-user-plus"></i>
-                        Регистрация
+                        Реєстрація
                     </a>
 
                 @else
@@ -63,7 +63,7 @@
                         class="btn btn-outline-primary" style="margin-left: 10px"
                         onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
                         <i class="fa fa-sign-out"></i>
-                        Выйти
+                        Вийти
                     </a>
                     <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
                         @csrf
@@ -74,19 +74,19 @@
             <div class="menu main-chapters float-right">
                 <a href="{{ route('players') }}" class="menu-item">
                     <img src="/images/icons/racket-white.png" class="icon" alt="">
-                    Игроки
+                    Гравці
                 </a>
                 <a href="{{ route('trainers') }}" class="menu-item">
                     <img src="/images/icons/whistle-white.png" class="icon" alt="">
-                    Тренеры
+                    Тренери
                 </a>
                 <a href="{{ route('courts') }}" class="menu-item">
                     <img src="/images/icons/court-white.png" class="icon" alt="">
-                    Корты
+                    Корти
                 </a>
                 <a href="{{ route('friends') }}" class="menu-item" style="margin-right: 30px">
                     <img src="/images/icons/handshake-white.png" class="icon" alt="">
-                    Друзья
+                    Друзі
                     <span class="badge badge-danger">{{ $menu_friends_count ?? '' }}</span>
                 </a>
             </div>
@@ -108,8 +108,8 @@
 
     <div class="site-footer">
         <div class="top-menu-container clearfix text-center justify-content-center align-self-center">
-            PlayTennis.com.ua - Поиск партнеров по теннису в Киеве &copy; 2020-{{ date('Y') }}
-            <br>Разработка: <a href="https://www.facebook.com/kotl.alex">Александр Котляров</a>
+            PlayTennis.com.ua - Пошук партнерів з тенісу в Києві &copy; 2020-{{ date('Y') }}
+            <br>Розробка: <a href="https://www.facebook.com/kotl.alex">Олександр Котляров</a>
         </div>
     </div>
 

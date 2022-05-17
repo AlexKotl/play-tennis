@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('site_title')
-    Play Tennis - поиск партнера по теннису в Киеве
+    Play Tennis - пошук партнерів з тенісу у Києві
 @endsection
 
 @section('content')
@@ -13,8 +13,8 @@
 
     <div class="row home-page">
         <div class="col-md-7">
-            <h2>Поиска партнеров по теннису</h2>
-            <p>Ищете с кем поиграть в Киеве? Наш сервис поможет найти партнера по теннису на вашем любимом корте.</p>
+            <h2>Пошук партнерів з тенісу</h2>
+            <p>Шукаєте з ким пограти у Києві? Наш сервіс допоможе знайти партнера з тенісу на вашому улюбленому корті.</p>
             <div class="row">
                 <div class="col-sm-3 col-6 d-none d-sm-block">
                     <a href="{{ route('courts') }}">
@@ -22,13 +22,13 @@
                     </a>
                 </div>
                 <div class="col-sm-9 justify-content-center align-self-center">
-                    В разделе <a href="{{ route('courts') }}">кортов</a> можно найти ближайший корт <b>на карте</b> и просмотреть игроков, которые на нем играют.
+                    У розділі <a href="{{ route('courts') }}">кортів</a> можна знайти найближчий корт <b>на карті</b> та переглянути гравців, які на ньому грають.
                 </div>
             </div>
             <br>
             <div class="row">
                 <div class="col-sm-9 justify-content-center align-self-center">
-                    Также можете перейти в раздел <a href="{{ route('players') }}">игроков</a> и найти партнера по уровню игры.
+                    Також можете перейти до розділу <a href="{{ route('players') }}">гравців</a> та знайти партнера за рівнем гри.
                 </div>
                 <div class="col-sm-3 col-6 d-none d-sm-block">
                     <a href="{{ route('players') }}">
@@ -41,16 +41,18 @@
             @guest
                 <br/><br/>
                 <div class="text-center">
-                    Чтобы получить доступ ко всем функциям на сайте -
-                    <a href="{{ route('register') }}" class="btn btn-primary">
-                        <i class="fa fa-user-plus"></i>
-                        Зарегистрируйтесь
-                    </a>
-                    или
-                    <a href="{{ route('login') }}" class="btn btn-primary">
-                        <i class="fa fa-sign-in"></i>
-                        Войдите
-                    </a>
+                    Щоб отримати доступ до всіх функцій на сайті -
+                    <p>
+                        <a href="{{ route('register') }}" class="btn btn-primary">
+                            <i class="fa fa-user-plus"></i>
+                            Зареєструйтесь
+                        </a>
+                        або
+                        <a href="{{ route('login') }}" class="btn btn-primary">
+                            <i class="fa fa-sign-in"></i>
+                            Увійдіть
+                        </a>
+                    </p>
 
                 </div>
                 <br><br>
@@ -134,7 +136,7 @@
                                         {{ $player->name }}
                                     </div>
                                     <div class="description">
-                                        Уровень: <b>{{ $player->rank ?? '-' }}</b>
+                                        Рівень: <b>{{ $player->rank ?? '-' }}</b>
                                     </div>
                                 </div>
                             </a>
@@ -142,7 +144,7 @@
                     </div>
                     <div class="text-center">
                         <br>
-                        <a href="{{ route('players') }}">Посмотреть других игроков</a>
+                        <a href="{{ route('players') }}">Переглянути інших гравців</a>
                     </div>
                 </div>
 

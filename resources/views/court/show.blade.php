@@ -1,11 +1,11 @@
 @extends('layouts.app')
 
 @section('site_title')
-    {{ $court->name }} - игроки которые играют на теннисном корте
+    {{ $court->name }} - гравці, які грають на тенісному корті
 @endsection
 
 @section('breadcrumbs')
-    <a href="{{ route('courts') }}">Корты</a>
+    <a href="{{ route('courts') }}">Корти</a>
     <a href="">{{ $court->name }}</a>
 @endsection
 
@@ -14,19 +14,19 @@
         <div class="col-xs-12 col-md-7">
             <h1>{{ $court->name }}</h1>
 
-            <b>Адрес</b>: {{ $court->address }} <br>
+            <b>Адреса</b>: {{ $court->address }} <br>
             @if ($court->phone != '')
                 <b>Телефон</b>: {{ $court->phone }} <br>
             @endif
             @if ($court->url != '')
                 <b>Сайт</b>: <a href="{{ $court->url }}">{{ $court->url }}</a> <br>
             @endisset
-            <b>Игроков на корте</b>: {{ count($players) }} <br><br>
+            <b>Гравців на корті</b>: {{ count($players) }} <br><br>
 
 
             @if ($court->map_lat != 0 && $court->map_lng != 0)
                 <a class="btn btn-primary d-sm-none" data-toggle="collapse" href="#collapse_map">
-                    <i class="fa fa-map"></i> Показать карту
+                    <i class="fa fa-map"></i> Показати карту
                 </a>
                 <div id="collapse_map" class="collapse show">
                     <div id="map" class="map" style="width:100%; height:300px"></div>
@@ -52,7 +52,7 @@
             @endif
 
             <hr>
-            <h3>Отзывы о корте:</h3>
+            <h3>Відгуки про корт:</h3>
             @if (count($comments) > 0)
                 <div class="messages-list court">
                     @foreach ($comments as $comment)
@@ -75,15 +75,15 @@
                 <form action="{{ route('comment_court', $court->id) }}" method="POST" class="message-form mt-5">
                     @csrf
                     <div class="form-group">
-                        <textarea name="comment" cols="40" rows="3" class="form-control" placeholder="Напишите ваш отзыв о корте..." title="" required=""></textarea>
+                        <textarea name="comment" cols="40" rows="3" class="form-control" placeholder="Напишіть ваш відгук про корт..." title="" required=""></textarea>
                     </div>
-                    <input type="submit" value="Отправить" class="btn btn-primary">
+                    <input type="submit" value="Відправити" class="btn btn-primary">
                 </form>
 
 
             @else
                 <div class="alert alert-warning">
-                    <a href="{{ route('login') }}">Войдите</a>, чтобы добавить свой отзыв о корте.
+                    <a href="{{ route('login') }}">Увійдіть</a>, щоб добавити свій відгук про корт.
                 </div>
             @endauth
 
@@ -91,7 +91,7 @@
         <div class="col-md-5">
             <div class="card">
                 <div class="card-body">
-                    <h3>Играют на этом корте:</h3>
+                    <h3>Грають на цьому корті:</h3>
                     @if (count($players) > 0)
                         <div class="top-players row">
                             @foreach ($players as $player)
@@ -102,7 +102,7 @@
                                             {{ $player->name }}
                                         </div>
                                         <div class="description">
-                                            Уровень: <b>{{ $player->rank ?? '-' }}</b>
+                                            Рівень: <b>{{ $player->rank ?? '-' }}</b>
                                         </div>
                                     </div>
                                 </a>
@@ -110,7 +110,7 @@
                         </div>
                     @else
                         <div class="alert alert-info">
-                            На этом корте пока никто не играет.
+                            На цьому корті поки ніхто не грає.
                         </div>
                     @endif
                 </div>

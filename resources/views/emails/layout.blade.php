@@ -3,5 +3,5 @@
 @yield("content")
 
 <div class="color: gray; margin-top: 100px">
-    Play Tennis - Поиск партнеров по теннису в Киеве
+    Play Tennis - Пошук партнерів з тенісу у Києві
 </div>

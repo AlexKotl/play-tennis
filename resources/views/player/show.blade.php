@@ -1,11 +1,11 @@
 @extends('layouts.app')
 
 @section('site_title')
-    Play Tennis - {{ $player->name }} - уровень {{ $player->rank }}
+    Play Tennis - {{ $player->name }} - рівень {{ $player->rank }}
 @endsection
 
 @section('breadcrumbs')
-    <a href="{{ route('players') }}">Игроки</a>
+    <a href="{{ route('players') }}">Гравці</a>
     <a href="">{{ $player->name }}</a>
 @endsection
 
@@ -47,10 +47,10 @@
                         <small class="ml-2">({{ $player->nickname }})</small>
                     </h1>
                     <i class="fa fa-trophy"></i>
-                    Уровень: <b>{{ $player->rank }}</b><br>
+                    Рівень: <b>{{ $player->rank }}</b><br>
                     @if ($player->player_since > 0)
                         <i class="fa fa-calendar"></i>
-                        Игровой опыт: <b>с {{ $player->player_since }}</b> года <br>
+                        Досвід гри: <b>з {{ $player->player_since }}</b> року <br>
                     @endif
                     @if ($player->phone != '')
                         <i class="fa fa-phone"></i>
@@ -58,13 +58,13 @@
                         @if ($show_phone)
                             <b><a href='tel:{{ $player->phone }}' class="text-dark">{{ $player->phone }}</a></b>
                         @else
-                            <small title="Напишите пользователю сообщение, и после ответа телефон будет открыт."><i>скрыт</i> </small>
+                            <small title="Напишіть користувачу повідомлення і після відповіді на нього телефон буде відображатися."><i>прихований</i> </small>
                         @endif
                         <br>
                     @endif
 
                     <a class="btn btn-primary mt-3 d-inline-block d-sm-inline-block d-md-none" data-toggle="collapse" href="#user-info" role="button" aria-expanded="false">
-                        Больше информации об игроке
+                        Більше інформації про гравця
                         <i class="fa fa-chevron-down"></i>
                     </a>
                 </div>
@@ -74,21 +74,21 @@
 
             <div class="collapse multi-collapse d-md-block" id="user-info">
                 @if ($player->about != '')
-                    <br><br><b>О себе:</b><br>
+                    <br><br><b>Про себе:</b><br>
                     <div class="card card-body">
                         {!! nl2br(e($player->about)) !!}
                     </div>
                 @endif
 
                 <br><br>
-                <h3>Играет на кортах:</h3>
+                <h3>Грає на кортах:</h3>
                 @if (count($player_courts) > 0)
                     @foreach ($player_courts as $court)
                         <li><a href="{{ route('court', $court->id) }}">{{ $court->name }}</a></li>
                     @endforeach
                 @else
                     <div class="alert alert-primary">
-                        Этот игрок не выбрал корты, на которых играет.
+                        Цей гравець не вибрав корти, на яких грає.
                     </div>
                 @endif
             </div>
@@ -103,7 +103,7 @@
         <div class="col-xs-12 col-md-5">
             <div class="card">
                 <div class="card-body">
-                    <h3>Связаться с игроком</h3>
+                    <h3>Звʼязатися з гравцем</h3>
                     @auth
                         <form action="{{ route('message_player', $player->id) }}" method="POST" class="message-form">
                             @csrf
@@ -113,7 +113,9 @@
                             <div class="d-flex">
                             <input type="submit" value="Отправить" class="btn btn-primary">
                             @if ($show_phone_warning)
-                                <small class="pl-3">После вашего ответа этот пользователь сможет <b>видеть ваш номер телефона</b>.</small>
+                                <small class="pl-3">
+                                    Після вашої відповіді цей користувач зможе <b>бачити ваш номер телефону</b>.
+                                </small>
                             @endif
                             </div>
                         </form>
@@ -121,7 +123,7 @@
 
                     @else
                         <div class="alert alert-warning">
-                            <a href="{{ route('login') }}">Войдите</a>, чтобы отправить игроку сообщение.
+                            <a href="{{ route('login') }}">Увійдіть</a>, щоб відправити гравцю повідомлення.
                         </div>
                     @endauth
                 </div>
@@ -139,9 +141,9 @@
                         <div class="date">
                             {{ date('d.m.Y', strtotime($message->created_at)) }}
                             @if ($message->is_read)
-                                <i class="fa fa-check text-success" title="Сообщение прочитано"></i>
+                                <i class="fa fa-check text-success" title="Повідомлення прочитане"></i>
                             @else
-                                <i class="fa fa-clock-o" title="Сообщение не прочитано"></i>
+                                <i class="fa fa-clock-o" title="Повідомлення не прочитане"></i>
                             @endif
 
                         </div>

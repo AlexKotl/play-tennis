@@ -2,17 +2,17 @@
 
 @section('site_title')
     @empty($user)
-        Регистрация профиля теннисиста
+        Реєстрація профіля теннисиста
     @else
-        Профиль
+        Профіль
     @endif
 @endsection
 
 @section('breadcrumbs')
     @empty($user)
-        <a href="">Регистрация</a>
+        <a href="">Реєстрація</a>
     @else
-        <a href="">Профиль игрока</a>
+        <a href="">Профіль гравця</a>
     @endif
 @endsection
 
@@ -39,19 +39,19 @@
     </script>
 
     @empty($user)
-        <h1>Регистрация</h1>
+        <h1>Реєстрація</h1>
     @else
-        <h1>Ваш профиль</h1>
+        <h1>Ваш профіль</h1>
     @endif
 
     <form method="post" enctype="multipart/form-data">
         @csrf
 
         <div class="form-group row">
-            <label class="col-md-3 col-form-label">Имя</label>
+            <label class="col-md-3 col-form-label">Імʼя</label>
             <div class="col-md-9">
                 {{Form::text('name', isset($user) ? $user->name : '', ['class' => 'form-control', 'autofocus' => 'autofocus'])}}
-                <small class="form-text text-muted">Ваше полное имя, которое будет отображаться на сайте</small>
+                <small class="form-text text-muted">Ваше повне імʼя, яке буде відображатися на сайті</small>
             </div>
         </div>
 
@@ -59,7 +59,7 @@
             <label class="col-md-3 col-form-label">Телефон</label>
             <div class="col-md-9">
                 {{Form::text('phone', isset($user) ? $user->phone : '', ['class' => 'form-control phone_mask'])}}
-                <small class="form-text text-muted">Телефон будет отображаться только для ваших друзей</small>
+                <small class="form-text text-muted">Телефон будуть бачити лише ваші друзі</small>
             </div>
         </div>
 
@@ -73,14 +73,16 @@
         @endif
 
         <div class="form-group row">
-            <label class="col-md-3 col-form-label">Корты</label>
+            <label class="col-md-3 col-form-label">Корти</label>
             <div class="col-md-9">
                 <p>
-                    <small class="form-text text-muted">Отметьте корты на которых вы можете играть на карте или выберите из списка ниже:</small>
+                    <small class="form-text text-muted">
+                        Виберіть корти, на котрих ви можете грати на карті або віберіть зі списку нижче:
+                    </small>
                 </p>
 
                 <a class="btn btn-primary d-sm-none" data-toggle="collapse" href="#collapse_map">
-                    <i class="fa fa-map"></i> Показать карту
+                    <i class="fa fa-map"></i> Показати карту
                 </a>
                 <div id="collapse_map" class="collapse show">
                     <div id="map" class="map" style="width:100%; height:400px"></div>
@@ -150,10 +152,14 @@
         </div>
 
         <div class="form-group row">
-            <label class="col-md-3 col-form-label">Уровень игры</label>
+            <label class="col-md-3 col-form-label">Рівень гри</label>
             <div class="col-md-9">
                 {{Form::select('rank', $ranks, isset($user) ? $user->rank : '', ['class' => 'form-control'])}}
-                <small class="form-text text-muted"><a href="#" data-toggle="modal" data-target="#rankModal">Как определить свой уровень?</a></small>
+                <small class="form-text text-muted">
+                    <a href="#" data-toggle="modal" data-target="#rankModal">
+                        Як визначити свій рівень?
+                    </a>
+                </small>
             </div>
         </div>
 
@@ -162,9 +168,10 @@
             <div class="col-md-9">
                 <label>
                     {{Form::checkbox('is_trainer', true, isset($user) ? $user->is_trainer : false)}}
-                    Я предоставляю услуги <b>тренинга</b><br>
+                    Я надаю  <b>тренерські</b> послуги<br>
                     <small>
-                        Если вы тренируете других игроков - отметьте эту галочку и ваш профиль появится в разделе тренеров. Подробную информацию о тренировках можете указать в графе "О себе".
+                        Якщо ви навчаєте інших гравців - поставте цю галочку і ваш профіль зʼявиться у розділі тренерів. 
+                        Детальну інформацію про тренування можете вказати в полі "Про мене".
                     </small>
                 </label>
             </div>
@@ -172,7 +179,7 @@
 
         <div class="form-group row trainer-price {{ isset($user) && $user->is_trainer ? '' : 'd-none' }}">
             <label class="col-md-3 col-form-label">
-                Цена тренировки
+                Ціна тренування
                 <small>(грн)</small>
             </label>
             <div class="col-md-9">
@@ -181,19 +188,21 @@
         </div>
 
         <div class="form-group row">
-            <label class="col-md-3 col-form-label">Игровой опыт</label>
+            <label class="col-md-3 col-form-label">Досвід гри</label>
             <div class="col-md-9">
                 {{Form::select('player_since', $years, isset($user) ? $user->player_since : '', ['class' => 'form-control'])}}
             </div>
         </div>
 
         <div class="form-group row">
-            <label class="col-md-3 col-form-label">О себе</label>
+            <label class="col-md-3 col-form-label">Про мене</label>
             <div class="col-md-9">
                 <textarea name="about" cols="10" rows="4" class="form-control" placeholder="О себе"
                     title="Расскажите о себе, ваш опыт игры, увлечения и т.д." id="id_about"
                     >@isset($user){{$user->about}}@endisset</textarea>
-                <small class="form-text text-muted">Расскажите о себе, ваш опыт игры, увлечения и т.д.</small>
+                <small class="form-text text-muted">
+                    Розкажіть про себе, ваш досвід гри, хоббі і т.д.
+                </small>
             </div>
         </div>
 
@@ -206,7 +215,7 @@
                         &nbsp;
                         <label>
                             <input type="checkbox" name="image-clear" id="image-clear_id">
-                            Удалить фото
+                            Видалити фото
                             <i class="fa fa-trash"></i>
                         </label>
                     </p>
@@ -223,25 +232,25 @@
                     <input type="password" name="password" class="form-control" placeholder="Пароль" required="" autocomplete="new-password">
                     <small class="form-text text-muted">
                         <ul>
-                            <li>Должен содержать как минимум 8 символов.</li>
-                            <li>Должен содержать буквы и числа.</li>
+                            <li>Має бути не коротше 8 символів.</li>
+                            <li>Має містити букви та числа.</li>
                         </ul>
                     </small>
                 </div>
             </div>
 
             <div class="form-group row">
-                <label class="col-md-3 col-form-label" for="id_password2">Пароль еще раз</label>
+                <label class="col-md-3 col-form-label" for="id_password2">Пароль ще раз</label>
                 <div class="col-md-9">
                     <input type="password" name="password_confirmation" class="form-control" placeholder="Пароль" required="" autocomplete="new-password">
-                    <small class="form-text text-muted">Введите такой же пароль, как вы ввели выше.</small>
+                    <small class="form-text text-muted">Повторно введіть пароль.</small>
                 </div>
             </div>
         @endif
 
 
 
-        <input type="submit" value="@empty($user) Регистрация @else Сохранить @endempty" class="btn btn-primary">
+        <input type="submit" value="@empty($user) Реєстрація @else Зберегти @endempty" class="btn btn-primary">
     </form>
 
     @include('inc.ranks_modal')

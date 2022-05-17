@@ -1,15 +1,15 @@
 @extends('layouts.app')
 
 @section('site_title')
-    Теннисные тренеры в Киеве
+    Тренери з тенісу Києва
 @endsection
 
 @section('breadcrumbs')
-    <a href="{% url 'players' %}">Тренеры</a>
+    <a href="{% url 'players' %}">Тренери</a>
 @endsection
 
 @section('content')
-    <h1>Тренеры по теннису</h1>
+    <h1>Тренери з тенісу</h1>
 
     <div class="players-list row">
         @foreach ($trainers as $trainer)
@@ -25,15 +25,15 @@
                             </p>
                             @if ($trainer->trainer_price > 0)
                                 <i class="fa fa-dollar" style="margin:0 5px"></i>
-                                Час тренировки: <strong>{{ $trainer->trainer_price }}</strong> грн <br>
+                                Година заняття: <strong>{{ $trainer->trainer_price }}</strong> грн <br>
                             @endif
                             @if ($trainer->courts_count > 0)
                                 <i class="fa fa-map-marker" style="margin:0 5px"></i>
-                                Корты: <strong>{{ $trainer->courts_count }}</strong>
+                                Корти: <strong>{{ $trainer->courts_count }}</strong>
                             @endif
                             @if ($trainer->friends_count > 0)
                                 <i class="fa fa-handshake-o"></i>
-                                Друзья: <strong>{{ $trainer->friends_count }}</strong>
+                                Друзі: <strong>{{ $trainer->friends_count }}</strong>
                             @endif
                         </p>
                     </div>

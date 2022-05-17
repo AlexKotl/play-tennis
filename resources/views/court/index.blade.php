@@ -1,16 +1,16 @@
 @extends('layouts.app')
 
 @section('site_title')
-    Теннисные корты Киева - поиск партнера по корту
+    Тенісні корти Києва - пошук партнера по корту
 @endsection
 
 @section('breadcrumbs')
-    <a href="">Корты Киева на карте</a>
+    <a href="">Корти Києва на карті</a>
 @endsection
 
 @section('content')
 
-    <h1>Корты</h1>
+    <h1>Корти</h1>
     <div class="d-none d-sm-block">
         <div id="map" class="map" style="width:100%; height:500px"></div>
     </div>
@@ -27,7 +27,7 @@
         @foreach ($courts as $court)
             @if ($court->map_lat != 0 && $court->map_lng != 0)
                 var marker = L.marker([{{ $court->map_lat }}, {{ $court->map_lng }}]).addTo(map);
-                marker.bindPopup("<b>{{ $court->name }}</b><br>{{ $court->address }}<br><a href='{{ route('court', $court->id) }}'>Подробнее</a>");
+                marker.bindPopup("<b>{{ $court->name }}</b><br>{{ $court->address }}<br><a href='{{ route('court', $court->id) }}'>Деталі...</a>");
             @endif
         @endforeach
 
@@ -41,11 +41,11 @@
         <table class="tablesorter-bootstrap table table-bordered ">
             <thead class="thead-dark">
                 <tr>
-                    <th>Корты</th>
-                    <th>Адрес</th>
+                    <th>Корт</th>
+                    <th>Адреса</th>
                     <th class="d-none d-sm-table-cell">Телефон</th>
-                    <th class="d-none d-sm-table-cell">Игроки</th>
-                    <th class="d-none d-sm-table-cell">Отзывы</th>
+                    <th class="d-none d-sm-table-cell">Гравці</th>
+                    <th class="d-none d-sm-table-cell">Відгуки</th>
                     <th class="d-none d-sm-table-cell" data-sorter="false"></th>
                 </tr>
             </thead>
@@ -76,7 +76,7 @@
                         </td>
                         <td class="d-none d-sm-table-cell">
                             <a href="{{ route('court', $court->id) }}" class="btn btn-primary btn-sm">
-                                <i class="fa fa-search"></i> Подробнее
+                                <i class="fa fa-search"></i> Деталі
                             </a>
                         </td>
                     </tr>
