@@ -94,9 +94,9 @@ class PlayerController extends Controller
             'sender' => $sender,
         ], function($m) use ($user) {
             $m->from('no-reply@playtennis.com.ua', 'Play Tennis');
-            $m->to($user->email, $user->name)->subject('Play Tennis - новое сообщение');
+            $m->to($user->email, $user->name)->subject('Play Tennis - нове повідомлення');
         });
 
-        return redirect()->route('player', ['id' => $id])->with('success', 'Сообщение отправлено.');
+        return redirect()->route('player', ['id' => $id])->with('success', 'Повідомлення відправлене.');
     }
 }

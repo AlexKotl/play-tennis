@@ -108,10 +108,10 @@
                         <form action="{{ route('message_player', $player->id) }}" method="POST" class="message-form">
                             @csrf
                             <div class="form-group">
-                                <textarea name="text" cols="40" rows="3" class="form-control" placeholder="Введите ваше сообщение..." title="" required=""></textarea>
+                                <textarea name="text" cols="40" rows="3" class="form-control" placeholder="Ваше повідомлення..." title="" required=""></textarea>
                             </div>
                             <div class="d-flex">
-                            <input type="submit" value="Отправить" class="btn btn-primary">
+                            <input type="submit" value="Відправити" class="btn btn-primary">
                             @if ($show_phone_warning)
                                 <small class="pl-3">
                                     Після вашої відповіді цей користувач зможе <b>бачити ваш номер телефону</b>.
