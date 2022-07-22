@@ -19,7 +19,7 @@
                 <b>Телефон</b>: {{ $court->phone }} <br>
             @endif
             @if ($court->url != '')
-                <b>Сайт</b>: <a href="{{ $court->url }}">{{ $court->url }}</a> <br>
+                <b>Сайт</b>: <a href="{{strpos($court->url, 'http') === false ? 'http://' : ''}}{{ $court->url }}">{{ $court->url }}</a> <br>
             @endisset
             <b>Гравців на корті</b>: {{ count($players) }} <br><br>
 
