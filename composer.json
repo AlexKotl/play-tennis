@@ -19,9 +19,10 @@
         "laravelcollective/html": "^6.1"
     },
     "require-dev": {
+        "barryvdh/laravel-debugbar": "^3.7",
         "facade/ignition": "^2.5",
-"fakerphp/faker": "^1.9.1",
-"mockery/mockery": "^1.4.2",
+        "fakerphp/faker": "^1.9.1",
+        "mockery/mockery": "^1.4.2",
         "nunomaduro/collision": "^5.0",
         "phpunit/phpunit": "^9.3.3"
     },
